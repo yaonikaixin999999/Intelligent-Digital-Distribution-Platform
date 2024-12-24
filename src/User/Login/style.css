@@ -1,16 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
+/* 重置所有元素的默认样式 */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* 设置 body 和 input 元素的字体 */
 body,
 input {
   font-family: "Poppins", sans-serif;
 }
 
+/* 定义容器样式，设置相对定位、宽度、背景色、最小高度和隐藏溢出内容 */
 .container {
   position: relative;
   width: 100%;
@@ -19,6 +22,7 @@ input {
   overflow: hidden;
 }
 
+/* 定义表单容器样式，设置绝对定位、宽度、高度和位置 */
 .forms-container {
   position: absolute;
   width: 100%;
@@ -27,6 +31,7 @@ input {
   left: 0;
 }
 
+/* 设置登录和注册表单的样式*/
 .signin-signup {
   position: absolute;
   top: 50%;
@@ -39,6 +44,7 @@ input {
   z-index: 5;
 }
 
+/* 设置表单样式 */
 form {
   display: flex;
   align-items: center;
@@ -51,21 +57,25 @@ form {
   grid-row: 1 / 2;
 }
 
+/* 设置表单为隐藏状态 */
 form.sign-up-form {
   opacity: 0;
   z-index: 1;
 }
 
+/* 设置表单为显示状态 */
 form.sign-in-form {
   z-index: 2;
 }
 
+/* 设置表单标题样式 */
 .title {
   font-size: 2.2rem;
   color: #444;
   margin-bottom: 10px;
 }
 
+/* 设置表单输入字段样式 */
 .input-field {
   max-width: 380px;
   width: 100%;
@@ -79,6 +89,7 @@ form.sign-in-form {
   position: relative;
 }
 
+/* 输入框的样式 */
 .input-field i {
   text-align: center;
   line-height: 55px;
@@ -87,6 +98,7 @@ form.sign-in-form {
   font-size: 1.1rem;
 }
 
+/* 输入框内文本的样式 */
 .input-field input {
   background: none;
   outline: none;
@@ -97,21 +109,25 @@ form.sign-in-form {
   color: #333;
 }
 
+/* 输入框占位符的样式 */
 .input-field input::placeholder {
   color: #aaa;
   font-weight: 500;
 }
 
+/* 社交文本的样式 */
 .social-text {
   padding: 0.7rem 0;
   font-size: 1rem;
 }
 
+/* 社交媒体图标的容器样式 */
 .social-media {
   display: flex;
   justify-content: center;
 }
 
+/* 社交媒体图标的样式 */
 .social-icon {
   height: 46px;
   width: 46px;
@@ -127,11 +143,13 @@ form.sign-in-form {
   transition: 0.3s;
 }
 
+/* 鼠标悬停时社交媒体图标的样式 */
 .social-icon:hover {
   color: #4481eb;
   border-color: #4481eb;
 }
 
+/* 按钮的样式 */
 .btn {
   width: 150px;
   background-color: #5995fd;
@@ -147,10 +165,13 @@ form.sign-in-form {
   transition: 0.5s;
 }
 
+/* 鼠标悬停时按钮的样式 */
 .btn:hover {
   background-color: #4d84e2;
 }
-.panels-container {
+
+/* 面板容器的样式 */
+.Panels-container {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -160,6 +181,7 @@ form.sign-in-form {
   grid-template-columns: repeat(2, 1fr);
 }
 
+/* 容器的伪元素样式，用于创建背景效果 */
 .container:before {
   content: "";
   position: absolute;
@@ -174,12 +196,14 @@ form.sign-in-form {
   z-index: 6;
 }
 
+/* 图片的样式 */
 .image {
   width: 100%;
   transition: transform 1.1s ease-in-out;
   transition-delay: 0.4s;
 }
 
+/* 面板的样式 */
 .panel {
   display: flex;
   flex-direction: column;
@@ -189,33 +213,39 @@ form.sign-in-form {
   z-index: 6;
 }
 
+/* 左侧面板的样式 */
 .left-panel {
   pointer-events: all;
   padding: 3rem 17% 2rem 12%;
 }
 
+/* 右侧面板的样式 */
 .right-panel {
   pointer-events: none;
   padding: 3rem 12% 2rem 17%;
 }
 
+/* 面板内容的样式 */
 .panel .content {
   color: #fff;
   transition: transform 0.9s ease-in-out;
   transition-delay: 0.6s;
 }
 
+/* 面板标题的样式 */
 .panel h3 {
   font-weight: 600;
   line-height: 1;
   font-size: 1.5rem;
 }
 
+/* 面板段落的样式 */
 .panel p {
   font-size: 0.95rem;
   padding: 0.7rem 0;
 }
 
+/* 透明按钮的样式 */
 .btn.transparent {
   margin: 0;
   background: none;
@@ -226,13 +256,13 @@ form.sign-in-form {
   font-size: 0.8rem;
 }
 
+/* 初始状态下右侧面板的图片和内容位置 */
 .right-panel .image,
 .right-panel .content {
   transform: translateX(800px);
 }
 
-/* ANIMATION */
-
+/* 注册模式下的样式变化 */
 .container.sign-up-mode:before {
   transform: translate(100%, -50%);
   right: 52%;
@@ -270,11 +300,13 @@ form.sign-in-form {
   pointer-events: all;
 }
 
+/* 响应式布局：屏幕宽度小于870px时的样式调整 */
 @media (max-width: 870px) {
   .container {
     min-height: 800px;
     height: 100vh;
   }
+
   .signin-signup {
     width: 100%;
     top: 95%;
@@ -373,6 +405,7 @@ form.sign-in-form {
   }
 }
 
+/* 响应式布局：屏幕宽度小于570px时的样式调整 */
 @media (max-width: 570px) {
   form {
     padding: 0 1.5rem;
@@ -381,9 +414,11 @@ form.sign-in-form {
   .image {
     display: none;
   }
+
   .panel .content {
     padding: 0.5rem 1rem;
   }
+
   .container {
     padding: 1.5rem;
   }
