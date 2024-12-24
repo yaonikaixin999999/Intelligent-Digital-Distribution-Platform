@@ -13,11 +13,10 @@
 
 body {
     font-family: "Inter", sans-serif;
-    background-color: rgba(#e6eef9, 0.5);
+    background-color: rgba(230,248,249, 0.5);
 }
-
 .container {
-    position: absolute;
+    position: relative;
     left: 0;
     top: 0;
     right: 0;
@@ -26,18 +25,16 @@ body {
     align-items: center;
     justify-content: center;
 }
-
 .tabs {
     display: flex;
     position: relative;
     background-color: #fff;
-    box-shadow: 0 0 1px 0 rgba(#185ee0, 0.15), 0 6px 12px 0 rgba(#185ee0, 0.15);
+    box-shadow: 0 0 1px rgba(24, 94, 224, 0.15), 0 6px 12px rgba(24, 94, 224, 0.15);
     padding: 0.75rem;
     border-radius: 99px;
-
-    * {
-        z-index: 2;
-    }
+* {
+    z-index: 2;
+}
 }
 
 input[type="radio"] {
@@ -52,8 +49,8 @@ input[type="radio"] {
     width: 200px;
     font-size: 1.25rem;
     font-weight: 500;
-    border-radius: 99px;
-    cursor: pointer;
+    border-radius: 99px; 
+cursor: pointer;
     transition: color 0.15s ease-in;
 }
 
@@ -71,10 +68,9 @@ input[type="radio"] {
 
 input[type="radio"] {
     &:checked {
-        &+label {
+        & + label {
             color: var(--primary-color);
-
-            &>.notification {
+            & > .notification {
                 background-color: var(--primary-color);
                 color: #fff;
             }
@@ -84,7 +80,7 @@ input[type="radio"] {
 
 input[id="radio-1"] {
     &:checked {
-        &~.glider {
+        & ~ .glider {
             transform: translateX(0);
         }
     }
@@ -92,7 +88,7 @@ input[id="radio-1"] {
 
 input[id="radio-2"] {
     &:checked {
-        &~.glider {
+        & ~ .glider {
             transform: translateX(100%);
         }
     }
@@ -100,7 +96,7 @@ input[id="radio-2"] {
 
 input[id="radio-3"] {
     &:checked {
-        &~.glider {
+        & ~ .glider {
             transform: translateX(200%);
         }
     }
@@ -113,8 +109,8 @@ input[id="radio-3"] {
     width: 200px;
     background-color: var(--secondary-color);
     z-index: 1;
-    border-radius: 99px;
-    transition: 0.25s ease-out;
+    border-radius: 99px; 
+transition: 0.25s ease-out;
 }
 
 @media (max-width: 700px) {
