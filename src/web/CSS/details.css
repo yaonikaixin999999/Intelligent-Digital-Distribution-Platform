@@ -15,23 +15,28 @@ body {
 }
 
 .tabs {
-    
+
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 35px;
 }
 
-.tabs > .image-container img{
-    width: 600px; /* 设置图片宽度 */
-    height: 300px; /* 使图片高度占满.tabs */
-    object-fit: cover; /* 保持图片比例并裁剪 */
+.tabs>.image-container img {
+    width: 600px;
+    /* 设置图片宽度 */
+    height: 300px;
+    /* 使图片高度占满.tabs */
+    object-fit: cover;
+    /* 保持图片比例并裁剪 */
     transition: .5s;
+    border-radius: 8px;
 }
 
 
-.tabs > .text-area textarea {
-    width: 350px; /* 固定宽度 */
+.tabs>.text-area textarea {
+    width: 350px;
+    /* 固定宽度 */
     height: 300px;
     padding: 10px;
     margin: 20px;
@@ -46,7 +51,7 @@ body {
 
 .label-container {
     position: relative;
-    top : -90px;
+    top: -90px;
     margin: 10px;
     font-family: Arial, sans-serif;
     color: #333;
