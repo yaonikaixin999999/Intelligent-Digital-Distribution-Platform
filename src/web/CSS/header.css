@@ -16,7 +16,7 @@ body {
     background-color: rgba(230,248,249, 0.5);
 }
 .container {
-    position: relative;
+    position: absolute;
     left: 0;
     top: 0;
     right: 0;
