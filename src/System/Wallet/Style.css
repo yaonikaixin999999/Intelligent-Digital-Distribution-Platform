@@ -45,7 +45,7 @@ h1 {
     padding: 10px;
     background-color: #f7fbff;
     border: 1px solid #cce7ff;
-    border-radius: 4px;
+    border-radius: 8px;
 }
 
 .amount-item:hover {
@@ -63,7 +63,7 @@ h1 {
     color: #fff;
     background-color: #5995fd;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
@@ -77,7 +77,7 @@ h1 {
     padding: 10px;
     background-color: #f7fbff;
     border: 1px solid #cce7ff;
-    border-radius: 4px;
+    border-radius: 8px;
 }
 
 .account-info h2 {
