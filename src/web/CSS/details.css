@@ -26,6 +26,7 @@ body {
     width: 600px; /* 设置图片宽度 */
     height: 300px; /* 使图片高度占满.tabs */
     object-fit: cover; /* 保持图片比例并裁剪 */
+    border-radius : 8px;
     transition: .5s;
 }
 
