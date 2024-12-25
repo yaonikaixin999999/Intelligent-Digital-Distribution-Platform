@@ -16,14 +16,11 @@ body {
     background-color: rgba(230,248,249, 0.5);
 }
 .container {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    position: relative;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+
 }
 .tabs {
     display: flex;
