@@ -75,7 +75,7 @@ input[type="radio"] {
     }
 }
 
-input[id="radio-1"] {
+input[id="radio-0"] {
     &:checked {
         & ~ .glider {
             transform: translateX(0);
@@ -83,7 +83,7 @@ input[id="radio-1"] {
     }
 }
 
-input[id="radio-2"] {
+input[id="radio-1"] {
     &:checked {
         & ~ .glider {
             transform: translateX(100%);
@@ -91,7 +91,7 @@ input[id="radio-2"] {
     }
 }
 
-input[id="radio-3"] {
+input[id="radio-2"] {
     &:checked {
         & ~ .glider {
             transform: translateX(200%);
@@ -99,7 +99,7 @@ input[id="radio-3"] {
     }
 }
 
-input[id="radio-4"] {
+input[id="radio-3"] {
     &:checked {
         & ~ .glider {
             transform: translateX(300%);
@@ -107,10 +107,18 @@ input[id="radio-4"] {
     }
 }
 
-input[id="radio-5"] {
+input[id="radio-4"] {
     &:checked {
         & ~ .glider {
             transform: translateX(400%);
+        }
+    }
+}
+
+input[id="radio-5"] {
+    &:checked {
+        & ~ .glider {
+            transform: translateX(500%);
         }
     }
 }
