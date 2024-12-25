@@ -29,6 +29,7 @@ body {
     /* 使图片高度占满.tabs */
     object-fit: cover;
     /* 保持图片比例并裁剪 */
+    border-radius: 8px;
     transition: .5s;
     border-radius: 8px;
 }
