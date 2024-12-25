@@ -1,40 +1,40 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+}
+
 .container {
-    display: flex;
-    width: 00px;
-    height: 100%;
-    padding: 0 15%;
-    box-sizing: border-box;
-    align-items: flex-start;
-    justify-content: center;
-    height: 35vh;
-}
-
-.container > .tabs {
-    width: 1600px; /* 设置tabs的宽度 */
-    height: 100%; /* 设置tabs的高度 */
-    display: flex;
+    max-width: 1000px;
+    margin: 20px auto;
     padding: 20px;
-    align-items: center;
-    background-color: #f9f9f9; /* 设置背景颜色 */
-    border-radius: 8px; /* 设置圆角 */
-    box-shadow: 0 20px 30px rgba(0,0,0,.1); /* 设置阴影 */
-    justify-content: space-between; /* 使图片和文本输入区之间有间距 */
-    overflow: hidden;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.tabs > img {
-    width: 100%; /* 设置图片宽度 */
-    height: 100%; /* 使图片高度占满.tabs */
+.tabs {
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 35px;
+}
+
+.tabs > .image-container img{
+    width: 600px; /* 设置图片宽度 */
+    height: 350px; /* 使图片高度占满.tabs */
     object-fit: cover; /* 保持图片比例并裁剪 */
     transition: .5s;
 }
 
 
-.tabs > textarea {
-    width: 100%; /* 固定宽度 */
-    height: 100%;
+.tabs > .text-area textarea {
+    width: 350px; /* 固定宽度 */
+    height: 350px;
     padding: 10px;
-    margin: 20px;
+    margin: 20px auto;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -44,82 +44,71 @@
     line-height: 1.5;
 }
 
-.tabs > .label-container {
-    position: relative;
-    top: 200px;
-    left: 110px;
-    width: 35%; /* 设置图片宽度 */
-    height: 4%; /* 使图片高度占满.tabs */
-    object-fit: cover; /* 保持图片比例并裁剪 */
-    margin: 20px;
-    font-family: Arial, sans-serif;
-    color: #333;
-}
 
-.tabs > .label-container .item-container {
-    
+.item-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 3px 1px;
+    padding: 10px 20px;
     margin: 20px auto;
-    max-width: 800px;
+    max-width: 1000px;
     background-color: #ffffff;
     border: 1px solid #e0eaf5;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.tabs > .label-container .item-info {
+
+.item-info {
     display: flex;
     align-items: center;
-    gap: 5px;
-    font-size: 5px;
+    gap: 10px;
+    font-size: 16px;
     color: #333;
 }
 
-.tabs > .label-container .item-info span {
+.item-info span {
     font-weight: bold;
     color: #007acc;
 }
 
-.tabs > .label-container .discount {
+.discount {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.tabs > .label-container .discount-percentage {
-    font-size: 7px;
+.discount-percentage {
+    font-size: 18px;
     font-weight: bold;
     color: #4caf50;
     background-color: #e6f7e6;
-    padding: 2px 5px;
+    padding: 5px 10px;
     border-radius: 4px;
 }
 
-.tabs > .label-container .price {
-    font-size: 5px;
+.price {
+    font-size: 16px;
     color: #333;
     display: flex;
     flex-direction: column;
 }
 
-.tabs > .label-container .price .original {
+.price .original {
     text-decoration: line-through;
     color: #999;
-    font-size: 3px;
+    font-size: 14px;
 }
 
-.tabs > .label-container .price .current {
-    font-size: 9px;
+.price .current {
+    font-size: 18px;
     font-weight: bold;
     color: #007acc;
 }
 
-.tabs > .label-container .add-to-cart {
-    padding: 2px 9px;
-    font-size: 5px;
+.add-to-cart {
+    padding: 8px 15px;
+    font-size: 14px;
     color: #ffffff;
     background-color: #007acc;
     border: none;
@@ -127,6 +116,6 @@
     cursor: pointer;
 }
 
-.tabs > .label-container .add-to-cart:hover {
+.add-to-cart:hover {
     background-color: #005f99;
 }
