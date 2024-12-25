@@ -60,3 +60,17 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(`Updated ${currentField} to ${newValue}`);
     });
 });
+
+//未实现的功能封阻
+document.addEventListener('DOMContentLoaded', function () {
+    // 获取所有的未实现功能
+    const socialIcons = document.querySelectorAll('.info-item-UN');
+
+    // 为每个未实现功能添加点击事件监听器
+    socialIcons.forEach(icon => {
+        icon.addEventListener('click', function (event) {
+            event.preventDefault(); // 阻止默认行为
+            alert('暂不支持该功能哦');
+        });
+    });
+});
