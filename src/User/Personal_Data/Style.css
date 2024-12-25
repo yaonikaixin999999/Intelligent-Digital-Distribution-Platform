@@ -1,0 +1,136 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #e0f7fa, #bbdefb);
+    color: #333;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.header img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #bbdefb;
+}
+
+.header h1 {
+    font-size: 35px;
+    margin: 0;
+    color: #1976d2;
+}
+
+.header p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.profile-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 35px;
+}
+
+.profile-info div {
+    background-color: #e3f2fd;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    color: #1976d2;
+}
+
+.profile-info div h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.profile-info div p {
+    margin: 5px 0 0;
+    font-size: 14px;
+}
+
+.recent-activity {
+    margin-bottom: 20px;
+}
+
+.recent-activity h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #1976d2;
+}
+
+.game-item {
+    display: flex;
+    align-items: center;
+    background-color: #f3f8fc;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.game-item img {
+    width: 100px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 8px;
+    border: 1px solid #bbdefb;
+}
+
+.game-info {
+    flex: 1;
+}
+
+.game-info h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #1976d2;
+}
+
+.game-info p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.progress-bar {
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 5px 0;
+    height: 8px;
+}
+
+.progress-bar-inner {
+    height: 100%;
+    background-color: #64b5f6;
+}
+
+.achievements {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.achievements img {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    border: 1px solid #bbdefb;
+}
