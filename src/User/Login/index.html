@@ -4,41 +4,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../../User/Login/style.css" />
   <title>登录</title>
+
 </head>
 
 <body>
   <div class="container">
     <div class="forms-container">
       <div class="signin-signup">
-        <form action="#" class="sign-in-form">
+        <form action = "http://localhost:80" class="sign-in-form" method="post" >
           <h2 class="title">登录</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="账号" />
+            <input type="text" name = "user_id" placeholder="账号" />
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="密码" />
+            <input type="password" name = "password" placeholder="密码" />
           </div>
-          <input type="submit" value="立即登录" class="btn solid" />
+          <input type="submit" value="立即登录" class="btn solid" id = "login" />
           <p class="social-text">通过其他方式</p>
           <div class="social-media">
             <a href="#" class="social-icon">
-              <img src="./img/icons8-qq.svg" alt="WeChat Icon" width="35" height="35">
+              <img src="../../User/Login/img/icons8-qq.svg" alt="WeChat Icon" width="35" height="35">
               <i class="fab fa-qq"></i>
             </a>
             <a href="#" class="social-icon">
-              <img src="./img/icons8-微信.svg" alt="WeChat Icon" width="35" height="35">
+              <img src="../../User/Login/img/icons8-微信.svg" alt="WeChat Icon" width="35" height="35">
               <i class="fab fa-weixin"></i>
             </a>
             <a href="#" class="social-icon">
-              <img src="./img/icons8-微博.svg" alt="WeChat Icon" width="35" height="35">
+              <img src="../../User/Login/img/icons8-微博.svg" alt="WeChat Icon" width="35" height="35">
               <i class="fab fa-weibo"></i>
             </a>
             <a href="#" class="social-icon">
-              <img src="./img/icons8-支付宝.svg" alt="WeChat Icon" width="35" height="35">
+              <img src="../../User/Login/img/icons8-支付宝.svg" alt="WeChat Icon" width="35" height="35">
               <i class="fab fa-alipay"></i>
             </a>
           </div>
@@ -65,19 +66,19 @@
           <p class="social-text">通过其他方式</p>
           <div class="social-media">
             <a href="#" class="social-icon">
-              <img src="./img/icons8-qq.svg" alt="WeChat Icon" width="35" height="35">
+              <img src="../../User/Login/img/icons8-qq.svg" alt="WeChat Icon" width="35" height="35">
               <i class="fab fa-qq"></i>
             </a>
             <a href="#" class="social-icon">
-              <img src="./img/icons8-微信.svg" alt="WeChat Icon" width="35" height="35">
+              <img src="../../User/Login/img/icons8-微信.svg" alt="WeChat Icon" width="35" height="35">
               <i class="fab fa-weixin"></i>
             </a>
             <a href="#" class="social-icon">
-              <img src="./img/icons8-微博.svg" alt="WeChat Icon" width="35" height="35">
+              <img src="../../User/Login/img/icons8-微博.svg" alt="WeChat Icon" width="35" height="35">
               <i class="fab fa-weibo"></i>
             </a>
             <a href="#" class="social-icon">
-              <img src="./img/icons8-支付宝.svg" alt="WeChat Icon" width="35" height="35">
+              <img src="../../User/Login/img/icons8-支付宝.svg" alt="WeChat Icon" width="35" height="35">
               <i class="fab fa-alipay"></i>
             </a>
           </div>
@@ -96,7 +97,7 @@
             去注册
           </button>
         </div>
-        <img src="img/log.svg" class="image" alt="" />
+        <img src="../../User/Login/img/log.svg" class="image" alt="" />
       </div>
       <div class="panel right-panel">
         <div class="content">
@@ -108,12 +109,14 @@
             去登录
           </button>
         </div>
-        <img src="img/register.svg" class="image" alt="" />
+        <img src="../../User/Login/img/register.svg" class="image" alt="" />
       </div>
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <!-- <script src = "server.js"></script> -->
+  <script src="../../User/Login/app.js"></script>
+  <!-- <script src = "log.js"></script> -->
 </body>
 
 </html>
