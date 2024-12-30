@@ -1,4 +1,8 @@
+const express = require('express');
 const mysql = require('mysql2');
+
+const app = express();
+const port = 336;
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -15,17 +19,27 @@ connection.connect((err) => {
         return;
     }
     console.log('数据库连接成功');
+});
 
-    // 执行sql语句
-    const sql = 'select * from comment';
-    connection.query(sql, (err, result) => {
+// 配置静态文件目录
+app.use(express.static('public'));
+
+// 定义路由，处理GET请求
+app.get('/', (req, res) => {
+    const sql = 'SELECT * FROM comment';
+    connection.query(sql, (err, results) => {
         if (err) {
             console.error('查询失败:', err);
+            res.status(500).send('查询失败');
             return;
         }
-        console.log('查询结果:', result);
+        res.json(results);
     });
+});
 
-    // 关闭连接
-    connection.end();
+// 启动服务器
+app.listen(port, () => {
+    console.log(`服务器运行在 http://localhost:${port}`);
+}).on('error', (err) => {
+    console.error('服务器启动失败:', err);
 });
