@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/stylesheets/home_z/header.css">
+    <link rel="stylesheet" href="/stylesheets/home_z/search.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <style>
+      a {
+          text-decoration: none; /* 显示下划线 */
+          color: rgb(137, 187, 215);
+      }
+  </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function(event) {
+                // event.preventDefault(); // 阻止默认行为   懒得喷
+                
+                // 获取与当前 a 标签关联的 radio 按钮
+                const targetRadioId = this.getAttribute('data-target');
+                const targetRadio = document.getElementById(targetRadioId);
+                
+                // 确保只有一个 radio 被选中
+                document.getElementsByName('tabs').forEach(radio => radio.checked = false);
+                targetRadio.checked = true;
+
+                // 更新 iframe 内容
+                var targetFrame = document.getElementsByName('content')[0];
+                console.log(targetFrame);
+                if (targetFrame) {
+                    targetFrame.src = this.href; // 使用 a 标签的 href 属性作为新页面的 URL
+                }
+            });
+        });
+    });
+    </script>
+
+</head>
+<body>
+<div class="container">
+    <div class="tabs">
+      <input type="radio" id="radio-0" name="tabs" checked />
+      <a class="tab" data-target="radio-0" href="/content" target="content">首页</a>
+      <input type="radio" id="radio-1" name="tabs" />
+      <a class="tab" data-target="radio-1" href="/game_classify" target="content">游戏分类</a>
+      <input type="radio" id="radio-2" name="tabs" />
+      <a class="tab" data-target="radio-2" href="/shopping_cart" target="content">购物车</a>
+      <input type="radio" id="radio-3" name="tabs" />
+      <a class="tab" data-target="radio-3" href="/order_set_z" target="content">全部订单</a>
+      <input type="radio" id="radio-4" name="tabs" />
+      <a class="tab" data-target="radio-4" href="/wallet" target="content">我的钱包</a>
+      <input type="radio" id="radio-5" name="tabs" />
+      <a class="tab" data-target="radio-5" href="/about_us" target="content">关于我们</a>
+        <div class="flexbox">
+            <div class="search">
+              <div>
+                <input type="text" placeholder="Search . . ." required>
+              </div>
+            </div>
+          </div>
+        <span class="glider"></span>
+    </div>
+</div>
+
+
+</body>
+</html>

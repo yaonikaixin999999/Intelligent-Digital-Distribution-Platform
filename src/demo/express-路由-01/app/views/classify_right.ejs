@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/Game_classify/classify_right.css">
+</head>
+<body>
+    <div class="input">
+        <% classify_right.forEach(function(item){ %>
+            <button class="value" data-game-label="<%= item.game_label %>">
+                <%= item.game_label %>
+            </button>
+        <%  }) %>
+    </div>
+
+    <script>
+        document.querySelectorAll('.value').forEach(button => {
+            button.addEventListener('click', function() {
+                const gameLabel = this.getAttribute('data-game-label');
+
+                console.log("fdaf");
+
+                fetch('/query', { // 注意这里的路径应该与后端路由匹配
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ game_label: gameLabel })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // 处理返回的数据，比如更新页面内容
+                    console.log(data);
+                    // 例如，动态更新页面上的某个部分
+                    const resultContainer = document.getElementById('result-container');
+                    if (resultContainer) {
+                        resultContainer.innerHTML = ''; // 清空容器
+                        data.forEach(item => {
+                            const div = document.createElement('div');
+                            div.textContent = `${item.name} - ${item.description}`; // 根据实际数据结构调整
+                            resultContainer.appendChild(div);
+                        });
+                    }
+                }).catch(error => {
+
+                });
+            });
+        });
+    </script>
+</body>
+</html>

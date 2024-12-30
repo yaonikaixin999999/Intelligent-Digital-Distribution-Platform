@@ -54,6 +54,31 @@
             更多详情，请参阅 <a href="#">《LDDP 协议》</a>
         </div>
     </div>
+
+    <script>
+        // 获取所有的按钮元素
+        const buttons = document.querySelectorAll('.amount-item button');
+
+        // 为每个按钮添加鼠标悬停事件监听器
+        buttons.forEach(button => {
+            button.addEventListener('mouseover', () => {
+                button.style.backgroundColor = '#4CAF50'; // 鼠标悬停时改变按钮背景颜色
+            });
+
+            // 为每个按钮添加鼠标移出事件监听器
+            button.addEventListener('mouseout', () => {
+                button.style.backgroundColor = ''; // 鼠标移出时恢复按钮背景颜色
+            });
+        });
+
+        //添加点击事件监听器
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // 点击按钮时执行相应的操作
+
+            });
+        });
+    </script>
 </body>
 
 </html>
