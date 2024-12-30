@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LDDP 钱包充值</title>
     <link rel="stylesheet" href="/stylesheets/wallet_style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/javascripts/wallet.js"></script>
 </head>
 
 <body>
@@ -21,29 +23,29 @@
         <div class="amounts">
             <div class="amount-item">
                 <span>充值 NT$30.00</span>
-                <button>充值</button>
+                <button class="recharge-btn" data-amount="30.00">充值</button>
             </div>
             <div class="amount-item">
                 <span>充值 NT$60.00</span>
-                <button>充值</button>
+                <button class="recharge-btn" data-amount="60.00">充值</button>
             </div>
             <div class="amount-item">
                 <span>充值 NT$150.00</span>
-                <button>充值</button>
+                <button class="recharge-btn" data-amount="150.00">充值</button>
             </div>
             <div class="amount-item">
                 <span>充值 NT$300.00</span>
-                <button>充值</button>
+                <button class="recharge-btn" data-amount="300.00">充值</button>
             </div>
             <div class="amount-item">
                 <span>充值 NT$600.00</span>
-                <button>充值</button>
+                <button class="recharge-btn" data-amount="600.00">充值</button>
             </div>
         </div>
 
         <div class="account-info">
             <h2>您的 LDDP 账户</h2>
-            <div class="balance">当前钱包余额 NT$0.00</div>
+            <div class="balance" id="balance">当前钱包余额 NT$0.00</div>
             <div>
                 <a href="#">查看我的账户明细</a><br>
                 <a href="#">兑换 LDDP 礼品卡或钱包充值码</a><br><br>
