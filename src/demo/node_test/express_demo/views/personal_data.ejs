@@ -1,0 +1,73 @@
+<!-- views/personal_data.ejs -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LDDP 个人资料</title>
+    <link rel="stylesheet" href="/stylesheets/personal_data.css">
+    <script src="/javascripts/personal_data.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <div>
+                    <h1>
+                        <%= user.cust_name %>
+                    </h1>
+                    <p>China</p>
+                    <p>这位玩家很懒，什么都没有留下</p>
+                </div>
+            </div>
+            <a href="#" class="edit-profile-btn">修改个人资料</a>
+        </div>
+
+        <div class="profile-info">
+            <div>
+                <h3>114 </h3>
+                <p>等级</p>
+            </div>
+            <div>
+                <h3>剁手王 </h3>
+                <p>称号</p>
+            </div>
+            <div>
+                <h3>
+                    <%= gameCount %>
+                </h3>
+                <p>游戏数量</p>
+            </div>
+            <div>
+                <h3>514</h3>
+                <p>徽章</p>
+            </div>
+        </div>
+
+        <div class="recent-activity">
+            <h2>游戏库存</h2><br>
+
+            <% games.forEach(game=> { %>
+                <div class="game-item" data-game-url="<%= game.game_url %>">
+                    <img src="<%= game.game_image %>" alt="游戏封面">
+                    <div class="game-info">
+                        <h3>
+                            <%= game.game_name %>
+                        </h3>
+                        <p>购买时间：<%= game.commit_time ? game.commit_time.toISOString().split('T')[0] : '未购买' %>
+                        </p>
+                        <div class="progress-bar">
+                            <div class="progress-bar-inner" style="width: 100%;"></div>
+                        </div>
+                        <div class="achievements">
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+</body>
+
+</html>
