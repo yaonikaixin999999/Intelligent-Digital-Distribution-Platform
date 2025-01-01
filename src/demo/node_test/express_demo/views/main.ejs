@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
     <style>
-        body, div, iframe {
+        body,
+        div,
+        iframe {
             margin: 0;
             padding: 0;
             border: none;
+            background-color: #f0f8ff;
         }
+
         .flex-container {
             display: flex;
             flex-direction: column;
             height: 100vh;
+            background-color: #f0f8ff;
         }
-        iframe[name = "content"]{
+
+        iframe[name="content"] {
             border: none;
-            margin-top:10px;
+            margin-top: 0px;
+            background-color: #f0f8ff;
         }
     </style>
 </head>
@@ -28,4 +36,5 @@
         <iframe src="/content" name="content" style="flex: 100;"></iframe>
     </div>
 </body>
+
 </html>

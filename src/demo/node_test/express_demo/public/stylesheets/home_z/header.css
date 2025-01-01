@@ -13,7 +13,8 @@
 
 body {
     font-family: "Inter", sans-serif;
-    background-color: rgba(230,248,249, 0.5);
+    background-color: #f0f8ff;
+    margin-top: 30px;
 }
 
 
@@ -32,9 +33,10 @@ body {
     box-shadow: 0 0 1px rgba(24, 94, 224, 0.15), 0 6px 12px rgba(24, 94, 224, 0.15);
     padding: 0.75rem;
     border-radius: 99px;
-* {
-    z-index: 2;
-}
+
+    * {
+        z-index: 2;
+    }
 }
 
 input[type="radio"] {
@@ -46,11 +48,11 @@ input[type="radio"] {
     align-items: center;
     justify-content: center;
     height: 54px;
-    width: 200px;
+    width: 150px;
     font-size: 1.25rem;
     font-weight: 500;
-    border-radius: 99px; 
-cursor: pointer;
+    border-radius: 99px;
+    cursor: pointer;
     transition: color 0.15s ease-in;
 }
 
@@ -68,9 +70,10 @@ cursor: pointer;
 
 input[type="radio"] {
     &:checked {
-        & + a {
+        &+a {
             color: var(--primary-color);
-            & > .notification {
+
+            &>.notification {
                 background-color: var(--primary-color);
                 color: #fff;
             }
@@ -80,7 +83,7 @@ input[type="radio"] {
 
 input[id="radio-0"] {
     &:checked {
-        & ~ .glider {
+        &~.glider {
             transform: translateX(0);
         }
     }
@@ -88,7 +91,7 @@ input[id="radio-0"] {
 
 input[id="radio-1"] {
     &:checked {
-        & ~ .glider {
+        &~.glider {
             transform: translateX(100%);
         }
     }
@@ -96,7 +99,7 @@ input[id="radio-1"] {
 
 input[id="radio-2"] {
     &:checked {
-        & ~ .glider {
+        &~.glider {
             transform: translateX(200%);
         }
     }
@@ -104,7 +107,7 @@ input[id="radio-2"] {
 
 input[id="radio-3"] {
     &:checked {
-        & ~ .glider {
+        &~.glider {
             transform: translateX(300%);
         }
     }
@@ -112,7 +115,7 @@ input[id="radio-3"] {
 
 input[id="radio-4"] {
     &:checked {
-        & ~ .glider {
+        &~.glider {
             transform: translateX(400%);
         }
     }
@@ -120,7 +123,7 @@ input[id="radio-4"] {
 
 input[id="radio-5"] {
     &:checked {
-        & ~ .glider {
+        &~.glider {
             transform: translateX(500%);
         }
     }
@@ -130,11 +133,11 @@ input[id="radio-5"] {
     position: absolute;
     display: flex;
     height: 54px;
-    width: 200px;
+    width: 150px;
     background-color: var(--secondary-color);
     z-index: 1;
-    border-radius: 99px; 
-transition: 0.25s ease-out;
+    border-radius: 99px;
+    transition: 0.25s ease-out;
 }
 
 @media (max-width: 700px) {

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单表</title>
+    <link rel="stylesheet" href="/stylesheets/user_order.css">
+    <link rel="stylesheet" href="/stylesheets/refund_slip.css">
+    <script src="/javascripts/user_order.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>全部订单</h1>
+        <% orders.forEach(order=> { %>
+            <div class="purchase-item">
+                <div class="header">
+                    <div class="status-label <%= getStatusClass(order.flag) %>">
+                        <%= getStatusText(order.flag) %>
+                    </div>
+                    <% if (order.flag==='0' ) { %>
+                        <button class="cancel-refund-button" data-order-id="<%= order.order_id %>">取消退款</button>
+                        <% } else { %>
+                            <button class="refund-button" data-order-id="<%= order.order_id %>">退款</button>
+                            <% } %>
+                </div>
+                <div class="purchase-details">
+                    <img src="<%= order.game_image %>" alt="<%= order.game_name %>">
+                    <div class="info">
+                        <h3>
+                            <%= order.game_name %>
+                        </h3>
+                        <p>购买时间：<%= order.commit_time.toISOString().split('T')[0] %>
+                        </p>
+                    </div>
+                    <div class="purchase-price">¥<%= order.now_price %>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+    </div>
+    <!-- 弹窗结构 -->
+    <div id="refundModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="form-container">
+                <form class="form" id="refundForm">
+                    <input type="hidden" id="orderId" name="orderId">
+                    <div class="form-group">
+                        <label for="reason">退款原因</label>
+                        <input type="text" id="reason" name="reason" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="specificReason">具体原因</label>
+                        <textarea name="specificReason" id="specificReason" rows="10" cols="50" required></textarea>
+                    </div>
+                    <button class="form-submit-btn" type="submit">提交</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
