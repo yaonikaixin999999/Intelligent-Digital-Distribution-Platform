@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const valueInput = document.getElementById('value');
     const lddpIdElement = document.querySelector('.info-item-not span.info-value'); // 获取 LDDP ID 元素
     const accountStatusElement = document.querySelector('.info-item-not span.info-value[data-field="flag"]'); // 获取账号状态元素
+    const backButton = document.querySelector('.back'); // 获取返回按钮
 
     let currentField = null;
     let currentValue = null;
@@ -129,4 +130,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // 假设用户id是已知的，调用 fetchUserData 函数来获取用户数据
     userId = '1001'; // 假设用户id是已知的
     fetchUserData(userId);
+
+    // 添加返回按钮的点击事件监听器
+    if (backButton) {
+        backButton.addEventListener('click', function (event) {
+            event.preventDefault(); // 阻止默认行为
+            window.history.back(); // 返回上一个页面
+        });
+    }
 });

@@ -1,25 +1,7 @@
-// update_data.js
+// routes/update_data.js
 var express = require('express');
 var router = express.Router();
-const mysql = require('mysql2');
-
-// 创建数据库连接
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'yzbzz189xwmrwxyd',
-    port: 3306,
-    database: 'lddp',
-});
-
-// 连接到数据库
-connection.connect((err) => {
-    if (err) {
-        console.error('数据库连接失败', err);
-        return;
-    }
-    console.log('数据库连接成功');
-});
+const connection = require('./sql'); // 引入数据库连接
 
 /* GET update_data page. */
 router.get('/', function (req, res, next) {
