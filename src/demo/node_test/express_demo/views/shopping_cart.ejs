@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LDDP 愿望单</title>
+    <link rel="stylesheet" href="/stylesheets/shopping_cart.css">
+    <script src="/javascripts/shopping_cart.js" defer></script>
+    <script>
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('zh-CN', options);
+        }
+
+        function showPurchaseAlert() {
+            alert('您已经拥有这个游戏了');
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <% if (user) { %>
+                    <%= user.cust_name %> 的愿望单
+                        <% } else { %>
+                            用户不存在
+                            <% } %>
+            </h1>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="按名称或标签搜索">
+            <button>搜索</button>
+        </div>
+
+        <% if (wishList) { %>
+            <% wishList.forEach(function(game) { %>
+                <div class="wishlist-item" onclick="window.open('<%= game.game_url %>', '_blank')">
+                    <img src="<%= game.game_image %>" alt="游戏封面">
+                    <div class="wishlist-item-content">
+                        <h2>
+                            <%= game.game_name %>
+                        </h2>
+                        <p>添加日期: <%= formatDate(game.add_time) %>
+                        </p>
+                    </div>
+                    <div class="wishlist-item-actions">
+                        <% if (purchasedGames.includes(game.game_id)) { %>
+                            <button class="discount purchased" onclick="showPurchaseAlert(); event.stopPropagation()">
+                                已购买
+                            </button>
+                            <% } else { %>
+                                <button class="discount"
+                                    onclick="buyGame('<%= game.game_id %>'); event.stopPropagation()">
+                                    <% if (game.discount==='免费' ) { %>
+                                        免费
+                                        <% } else { %>
+                                            <%= game.discount %> NT$ <%= game.now_price %>
+                                                    <% } %>
+                                </button>
+                                <% } %>
+                    </div>
+                </div>
+                <% }) %>
+                    <% } else { %>
+                        <p>愿望单为空</p>
+                        <% } %>
+    </div>
+</body>
+
+</html>
