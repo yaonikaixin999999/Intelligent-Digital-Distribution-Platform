@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body, div, iframe {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+        .flex-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        iframe[name = "content"]{
+            border: none;
+            margin-top:10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex-container">
+        <iframe src="/header" name="header" style="flex: 1;"></iframe>
+        <iframe src="/content" name="content" style="flex: 100;"></iframe>
+    </div>
+</body>
+</html>

@@ -11,6 +11,16 @@ var walletRouter = require('./routes/wallet');
 var update_dataRouter = require('./routes/update_data');
 var personal_dataRouter = require('./routes/personal_data');
 var shopping_cartRouter = require('./routes/shopping_cart');
+var loginRouter = require('./routes/login');
+var registerRouter = require('./routes/register');
+var contnetRouter = require('./routes/content');
+var headerRouter = require('./routes/header');
+var order_set_zRouter = require('./routes/order_set_z');
+var shopping_cartRouter = require('./routes/shopping_cart');
+// var game_classifyRouter = require('./routes/game_classify');
+// var classify_leftRouter = require('./routes/classify_left');
+// var classify_rightRouter = require('./routes/classify_right');
+var searchRouter = require('./routes/search');
 
 var app = express();
 
@@ -26,6 +36,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', indexRouter);
 //app.use('/users', usersRouter);
+app.use('/login', loginRouter);
+app.use('/register', registerRouter);
+app.use('/content', contnetRouter);
+app.use('/header', headerRouter);
+app.use('/order_set_z', order_set_zRouter);
+app.use('/shopping_cart', shopping_cartRouter);
+// app.use('/game_classify', game_classifyRouter);
+// app.use('/classify_left', classify_leftRouter);
+// app.use('/classify_right', classify_rightRouter);
+app.use('/search', searchRouter);
 app.use('/wallet', walletRouter);
 app.use('/update_data', update_dataRouter);
 app.use('/personal_data', personal_dataRouter);

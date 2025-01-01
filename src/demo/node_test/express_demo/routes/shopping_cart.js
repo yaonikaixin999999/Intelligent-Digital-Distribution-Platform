@@ -4,7 +4,7 @@ const router = express.Router();
 const connection = require('./sql'); // 引入数据库连接模块
 
 router.get('/', (req, res) => {
-    const userId = req.query.user_id; // 假设用户ID通过查询参数传递
+    const userId = '1001'; // 假设用户ID通过查询参数传递
     console.log('User ID:', userId); // 调试信息
     const query = `
         SELECT sc.game_id, sc.add_time, g.game_name, g.game_image, g.game_url, g.discount, g.now_price
