@@ -52,17 +52,25 @@ router.post('/cancel/:orderId', function (req, res, next) {
 // 提交退款
 router.post('/refund', function (req, res, next) {
     const { orderId, reason, specificReason } = req.body;
+    console.log('Received refund data:', req.body); // 添加日志
+
+    if (!orderId || !reason || !specificReason) {
+        return res.status(400).send('Missing required fields');
+    }
+
     const query = `
         INSERT INTO refund_table (order_id, user_id, reason, specific_reason, commit_time, flag)
         VALUES (?, ?, ?, ?, NOW(), ?)
     `;
     connection.query(query, [orderId, 'user_id_here', reason, specificReason, '0'], (err, result) => {
         if (err) {
+            console.error('Error inserting refund data:', err); // 添加日志
             return next(err);
         }
         const updateQuery = 'UPDATE user_order SET flag = ? WHERE order_id = ?';
         connection.query(updateQuery, ['0', orderId], (err, updateResult) => {
             if (err) {
+                console.error('Error updating order flag:', err); // 添加日志
                 return next(err);
             }
             res.sendStatus(200);
