@@ -16,12 +16,12 @@ var registerRouter = require('./routes/register');
 var contnetRouter = require('./routes/content');
 var headerRouter = require('./routes/header');
 var order_set_zRouter = require('./routes/order_set_z');
-var shopping_cartRouter = require('./routes/shopping_cart');
 var search_gameRouter = require('./routes/search_game');
 // var game_classifyRouter = require('./routes/game_classify');
 // var classify_leftRouter = require('./routes/classify_left');
 // var classify_rightRouter = require('./routes/classify_right');
 var searchRouter = require('./routes/search');
+var user_orderRouter = require('./routes/user_order');
 
 var app = express();
 
@@ -50,8 +50,8 @@ app.use('/search', searchRouter);
 app.use('/wallet', walletRouter);
 app.use('/update_data', update_dataRouter);
 app.use('/personal_data', personal_dataRouter);
-app.use('/shopping_cart', shopping_cartRouter);
 app.use('/search_game', search_gameRouter);
+app.use('/user_order', user_orderRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
