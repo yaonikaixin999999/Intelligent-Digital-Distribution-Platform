@@ -1,0 +1,114 @@
+<!-- views/game_detail.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/game_detail.css">
+    <link rel="stylesheet" href="/stylesheets/comment.css">
+    <script defer src="/javascripts/comment.js"></script> <!-- 使用defer确保DOM加载完成后再执行JS -->
+    <title>游戏详情 - <%= game.game_name %></title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="tabs">
+            <!-- views/game_detail.ejs -->
+            <div class="game-header">
+                <div class="image-container">
+                    <img src="<%= game.game_image %>" alt="游戏封面">
+                </div>
+                <div class="game-info">
+                    <h1><%= game.title %>™</h1>
+                    <p><%= game.game_label %></p>
+                    <div class="release-info">
+                        <span>开发者: <%= game.developer %></span>
+                        <span>发行日期: <%= game.release_date %></span>
+                    </div>
+                    <div class="tags">
+                        <% if (game.game_label) { %>
+                            <% game.game_label.split(',').forEach(function(tag) { %>
+                                <span><%= tag.trim() %></span>
+                            <% }); %>
+                        <% } else { %>
+                            <span>无标签</span>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="label-container">
+        <div class="item-container">
+            <div class="item-info">
+                购买 <span>《<%= game.game_name %>》</span>
+            </div>
+            <div class="discount">
+                <div class="discount-percentage">-<%= game.discount %>%</div>
+                <div class="price">
+                    <div class="original">¥<%= game.old_price %></div>
+                    <div class="current">¥<%= game.last_price %></div>
+                </div>
+                <button class="add-to-cart" onclick="addToCart()">添加至购物车</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-container">
+        <div class="header">
+            正在显示与上述筛选条件匹配的 <strong id="total-comments"><%= comments ? comments.length : 0 %></strong> 篇评论（<span class="expand">重设</span>）
+        </div>
+
+        <div class="container">
+            <!-- All Comments Section -->
+            <div class="all-section" id="all-reviews">
+                <% if (comments && comments.length > 0) { %>
+                    <% comments.forEach(function(comment) { %>
+                        <div class="review-section">
+                            <div class="review-header"><%= comment.author || '匿名用户' %></div>
+                            <div class="review-content">
+                                <%= comment.content %> 
+                                <% if (comment.expandable) { %>
+                                    <span class="expand" onclick="toggleReview(this)">展开完整评测</span>
+                                <% } %>
+                            </div>
+                            <div class="review-footer">
+                                <span>
+                                    <img class="thumb" src="thumb-up.png" alt="thumb"> <%= comment.likes || 0 %> 人觉得这篇评测有价值
+                                </span>
+                                <span><%= comment.humor || 0 %> 人觉得这篇评测欢乐</span>
+                                <span><%= comment.comment_time || '未知时间' %> 小时</span>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <p>暂无评论。</p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleReview(spanElement) {
+            const reviewContent = spanElement.parentElement;
+            if (reviewContent.style.maxHeight) {
+                // 如果已经有最大高度，则恢复原状
+                reviewContent.style.maxHeight = null;
+                spanElement.textContent = "展开完整评测";
+            } else {
+                // 否则设置最大高度为内容的高度
+                reviewContent.style.maxHeight = reviewContent.scrollHeight + "px";
+                spanElement.textContent = "收起评测";
+            }
+        }
+
+        function addToCart() {
+            console.log('添加至购物车功能需要进一步开发');
+            // 这里可以调用API接口将商品添加到购物车
+        }
+    </script>
+</body>
+
+</html>

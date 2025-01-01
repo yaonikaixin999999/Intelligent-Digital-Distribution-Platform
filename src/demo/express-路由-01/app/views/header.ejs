@@ -16,30 +16,36 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-        const tabs = document.querySelectorAll('.tab');
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function(event) {
-                // event.preventDefault(); // 阻止默认行为   懒得喷
-                
-                // 获取与当前 a 标签关联的 radio 按钮
-                const targetRadioId = this.getAttribute('data-target');
-                const targetRadio = document.getElementById(targetRadioId);
-                
-                // 确保只有一个 radio 被选中
-                document.getElementsByName('tabs').forEach(radio => radio.checked = false);
-                targetRadio.checked = true;
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function(event) {
+                    // 获取与当前 a 标签关联的 radio 按钮
+                    const targetRadioId = this.getAttribute('data-target');
+                    const targetRadio = document.getElementById(targetRadioId);
+                    
+                    // 确保只有一个 radio 被选中
+                    document.getElementsByName('tabs').forEach(radio => radio.checked = false);
+                    targetRadio.checked = true;
+                });
+            });
 
-                // 更新 iframe 内容
-                // var targetFrame = document.getElementsByName('content')[0];
-                // console.log(targetFrame);
-                // if (targetFrame) {
-                //     targetFrame.src = this.href; // 使用 a 标签的 href 属性作为新页面的 URL
-                // }
+            // 获取输入框元素
+            const searchInput = document.getElementById('searchInput');
+
+            // 添加键盘事件监听器
+            searchInput.addEventListener('keydown', function(event) {
+                // 检查是否按下了回车键（键码为13）
+                if (event.key === 'Enter') {
+                    // 获取输入框的值
+                    const searchValue = searchInput.value;
+
+                    // 执行跳转，并将输入框的值作为查询参数传递
+                    console.log(`Redirecting to /search?search=${encodeURIComponent(searchValue)}`);
+                    location.href = '/search';
+                }
             });
         });
-    });
     </script>
-
 </head>
 <body>
 <div class="container">
@@ -47,7 +53,7 @@
       <input type="radio" id="radio-0" name="tabs" checked />
       <a class="tab" data-target="radio-0" href="/content" target="content">首页</a>
       <input type="radio" id="radio-1" name="tabs" />
-      <a class="tab" data-target="radio-1" href="/game_classify" target="content">游戏分类</a>
+      <a class="tab" data-target="radio-1" href="/all_game" target="content">全部游戏</a>
       <input type="radio" id="radio-2" name="tabs" />
       <a class="tab" data-target="radio-2" href="/shopping_cart" target="content">愿望单</a>
       <input type="radio" id="radio-3" name="tabs" />
@@ -60,17 +66,15 @@
           <form action="/search" method="get">
             <div class="search">
               <div>
-                 <input type="text" name = "search" placeholder="Search . . ." required>
-                 <button type="button" id="Button" name="tabButton"></button>
-                <a class = "tabButton" data-target="Button" href = "/search" target = "content">go</a>
+                 <input type="text" id="searchInput" name="search" placeholder="Search . . ." required>
+                 <button type="submit" id="Button" name="tabButton"></button>
                 <!-- <button type="button" id="Button" name="tabButton" onclick="location.href='/search';" data-target="Button">点击我前往游戏分类</button> -->
               </div>
             </div>
-            </form>
-          </div>
+          </form>
+        </div>
         <span class="glider"></span>
     </div>
 </div>
-
 </body>
 </html>

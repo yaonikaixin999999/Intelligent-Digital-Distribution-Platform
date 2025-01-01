@@ -1,13 +1,12 @@
-var express = require('express');
-var router = express.Router();
-var db = require('../sql.js');
-
-router.use(express.urlencoded({ extended: false }));
+// routes/all_game.js
+const express = require('express');
+const router = express.Router();
+const db = require('../sql.js'); // 假设你有数据库连接模块
 
 router.get('/', function (req, res, next) {
-    var game_name = req.query.search;
-    console.log(req.query.search);
-    db.query('SELECT * FROM game ', function (err, data) {
+    const game_name = req.query.search;
+
+    db.query('SELECT * FROM game', function (err, data) {
         if (err) {
             console.error(err);
             return res.status(500).send('Error retrieving data from database');

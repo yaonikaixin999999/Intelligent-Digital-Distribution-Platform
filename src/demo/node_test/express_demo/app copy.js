@@ -12,9 +12,6 @@ var contnetRouter = require('./routes/content');
 var headerRouter = require('./routes/header');
 var order_set_zRouter = require('./routes/order_set_z');
 var shopping_cartRouter = require('./routes/shopping_cart');
-var all_gameRouter = require('./routes/all_game');
-var game_detailRouter = require('./routes/game_detail');
-var add_cartRouter = require('./routes/add_cart');
 // var game_classifyRouter = require('./routes/game_classify');
 // var classify_leftRouter = require('./routes/classify_left');
 // var classify_rightRouter = require('./routes/classify_right');
@@ -37,7 +34,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/users', usersRouter);
 // app.use('/users', articlesRouter);
-app.use('/add_cart',add_cartRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/content',contnetRouter);
@@ -48,9 +44,6 @@ app.use('/shopping_cart',shopping_cartRouter);
 // app.use('/classify_left',classify_leftRouter);
 // app.use('/classify_right',classify_rightRouter);
 app.use('/search',searchRouter);
-app.use('/all_game',all_gameRouter);
-app.use('/game_detail',game_detailRouter);
-
 //bannerlist
 // app.use('/bannerlist',bannerList);
 

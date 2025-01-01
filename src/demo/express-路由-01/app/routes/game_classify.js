@@ -5,5 +5,4 @@ router.get('/', function(req, res, next) {
     res.render("game_classify")
   });
 
-
-  module.exports = router;
+module.exports = router;
