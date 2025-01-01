@@ -11,7 +11,6 @@
   <style>
     a {
       text-decoration: none;
-      /* 显示下划线 */
       color: rgb(137, 187, 215);
     }
   </style>
@@ -21,22 +20,11 @@
       const tabs = document.querySelectorAll('.tab');
       tabs.forEach(tab => {
         tab.addEventListener('click', function (event) {
-          // event.preventDefault(); // 阻止默认行为   懒得喷
-
-          // 获取与当前 a 标签关联的 radio 按钮
           const targetRadioId = this.getAttribute('data-target');
           const targetRadio = document.getElementById(targetRadioId);
 
-          // 确保只有一个 radio 被选中
           document.getElementsByName('tabs').forEach(radio => radio.checked = false);
           targetRadio.checked = true;
-
-          // 更新 iframe 内容
-          // var targetFrame = document.getElementsByName('content')[0];
-          // console.log(targetFrame);
-          // if (targetFrame) {
-          //     targetFrame.src = this.href; // 使用 a 标签的 href 属性作为新页面的 URL
-          // }
         });
       });
     });
@@ -60,13 +48,12 @@
       <input type="radio" id="radio-5" name="tabs" />
       <a class="tab" data-target="radio-5" href="/personal_data" target="content">关于自己</a>
       <div class="flexbox">
-        <form action="/search" method="get">
+        <form action="/search_game" method="get"
+          onsubmit="event.preventDefault(); window.open(this.action + '?search=' + encodeURIComponent(this.search.value), '_blank');">
           <div class="search">
             <div>
               <input type="text" name="search" placeholder="Search . . ." required>
-              <button type="button" id="Button" name="tabButton"></button>
-              <a class="tabButton" data-target="Button" href="/search" target="content">go</a>
-              <!-- <button type="button" id="Button" name="tabButton" onclick="location.href='/search';" data-target="Button">点击我前往游戏分类</button> -->
+              <button type="submit"></button>
             </div>
           </div>
         </form>
@@ -74,7 +61,6 @@
       <span class="glider"></span>
     </div>
   </div>
-
 </body>
 
 </html>

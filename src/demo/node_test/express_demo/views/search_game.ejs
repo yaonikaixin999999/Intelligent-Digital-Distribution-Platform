@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索游戏 - <%= search_term %>
+    </title>
+    <link rel="stylesheet" href="/stylesheets/search_game.css">
+    <script src="/javascripts/search_game.js" defer></script>
+    <style>
+        .wishlist-item-details h2 {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 300px;
+            /* 根据需要调整最大宽度 */
+        }
+
+        .wishlist-item-details p:last-child {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>搜索结果: <%= search_term %>
+            </h1>
+        </div>
+
+        <div class="search-bar">
+            <form action="/search_game" method="get"
+                onsubmit="event.preventDefault(); window.open(this.action + '?search=' + encodeURIComponent(this.search.value), '_blank');">
+                <input type="text" name="search" placeholder="按名称或标签搜索" required>
+                <button type="submit">搜索</button>
+            </form>
+        </div>
+
+        <div class="wishlist-container">
+            <% search.forEach(function(item) { %>
+                <div class="wishlist-item" onclick="window.open('<%= item.game_url %>', '_blank')">
+                    <img src="<%= item.game_image %>" alt="游戏封面">
+                    <div class="wishlist-item-content">
+                        <div class="wishlist-item-details">
+                            <h2>
+                                <%= item.game_name.length> 20 ? item.game_name.substring(0, 20) + '...' : item.game_name
+                                    %>
+                            </h2>
+                            <p>
+                                <%= item.game_label %>
+                            </p>
+                            <p>
+                                <%= item.discount %>
+                                    <%= item.now_price %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+</body>
+
+</html>

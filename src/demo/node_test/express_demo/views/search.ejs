@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Steam Sale Page</title>
     <link rel="stylesheet" href="/stylesheets/Game_classify/game_classify.css">
 </head>
+
 <body>
     <div class="container">
-            <table class = "table">
-                <tbody>
-                    <%search.forEach(function(item){ %>
-                        <tr>
+        <table class="table">
+            <tbody>
+                <%search.forEach(function(item){ %>
+                    <tr>
                         <td>
-                            <img src= '<%= item.game_image %>' alt="Assassin's Creed Origins">
+                            <img src='<%= item.game_image %>' alt="Assassin's Creed Origins">
                         </td>
                         <td>
                             <div>
@@ -27,17 +29,20 @@
                         </td>
 
                         <td>
-                           <div>
+                            <div>
                                 <span class="discount">
-                                     - <%= Math.round(item.discount * 100) + '%' %>
+                                    - <%= Math.round(item.discount * 100) + '%' %>
                                 </span>
-                                <span class="price"><%=item.last_price%></span>
-                            </div> 
+                                <span class="price">
+                                    <%=item.last_price%>
+                                </span>
+                            </div>
                         </td>
                     </tr>
                     <% }) %>
-                </tbody>
-            </table>
+            </tbody>
+        </table>
     </div>
 </body>
+
 </html>

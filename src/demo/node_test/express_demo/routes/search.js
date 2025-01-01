@@ -7,7 +7,7 @@ router.use(express.urlencoded({ extended: false }));
 router.get('/', function (req, res, next) {
   var game_name = req.query.search;
   console.log(req.query.search);
-  db.query('SELECT game_name FROM game WHERE game_name LIKE ?', ['%' + game_name + '%'], function (err, data) {
+  db.query('SELECT * FROM game WHERE game_name LIKE ?', ['%' + game_name + '%'], function (err, data) {
     if (err) {
       console.error(err);
       return res.status(500).send('Error retrieving data from database');
@@ -16,7 +16,5 @@ router.get('/', function (req, res, next) {
     res.render('search', { search: data });
   });
 });
-
-
 
 module.exports = router;
