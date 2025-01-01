@@ -4,9 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var articlesRouter = require('./routes/articles');
-var usersRouter = require('./routes/users');
+// var articlesRouter = require('./routes/articles');
+// var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
+var registerRouter = require('./routes/register');
 var contnetRouter = require('./routes/content');
 var headerRouter = require('./routes/header');
 var order_set_zRouter = require('./routes/order_set_z');
@@ -14,11 +15,11 @@ var shopping_cartRouter = require('./routes/shopping_cart');
 var game_classifyRouter = require('./routes/game_classify');
 var classify_leftRouter = require('./routes/classify_left');
 var classify_rightRouter = require('./routes/classify_right');
+var searchRouter = require('./routes/search');
 var bannerList = require('./routes/login');
 
 
 var app = express();
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/users', usersRouter);
 // app.use('/users', articlesRouter);
 app.use('/login', loginRouter);
+app.use('/register', registerRouter);
 app.use('/content',contnetRouter);
 app.use('/header',headerRouter);
 app.use('/order_set_z',order_set_zRouter);
@@ -41,8 +43,9 @@ app.use('/shopping_cart',shopping_cartRouter);
 app.use('/game_classify',game_classifyRouter);
 app.use('/classify_left',classify_leftRouter);
 app.use('/classify_right',classify_rightRouter);
+app.use('/search',searchRouter);
 //bannerlist
-app.use('/bannerlist',bannerList);
+// app.use('/bannerlist',bannerList);
 
 
 // catch 404 and forward to error handler

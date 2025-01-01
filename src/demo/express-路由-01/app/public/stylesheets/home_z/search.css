@@ -47,8 +47,8 @@ html, body {
   width: 4px;
   height: 10px;
   position: absolute;
-  top: 20px;
-  right: inherit;
+  top: 21px;
+  right: 5px;
   transform: rotate(135deg);
 }
 

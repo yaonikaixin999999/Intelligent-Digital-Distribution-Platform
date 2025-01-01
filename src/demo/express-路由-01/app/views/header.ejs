@@ -30,11 +30,11 @@
                 targetRadio.checked = true;
 
                 // 更新 iframe 内容
-                var targetFrame = document.getElementsByName('content')[0];
-                console.log(targetFrame);
-                if (targetFrame) {
-                    targetFrame.src = this.href; // 使用 a 标签的 href 属性作为新页面的 URL
-                }
+                // var targetFrame = document.getElementsByName('content')[0];
+                // console.log(targetFrame);
+                // if (targetFrame) {
+                //     targetFrame.src = this.href; // 使用 a 标签的 href 属性作为新页面的 URL
+                // }
             });
         });
     });
@@ -49,7 +49,7 @@
       <input type="radio" id="radio-1" name="tabs" />
       <a class="tab" data-target="radio-1" href="/game_classify" target="content">游戏分类</a>
       <input type="radio" id="radio-2" name="tabs" />
-      <a class="tab" data-target="radio-2" href="/shopping_cart" target="content">购物车</a>
+      <a class="tab" data-target="radio-2" href="/shopping_cart" target="content">愿望单</a>
       <input type="radio" id="radio-3" name="tabs" />
       <a class="tab" data-target="radio-3" href="/order_set_z" target="content">全部订单</a>
       <input type="radio" id="radio-4" name="tabs" />
@@ -57,16 +57,20 @@
       <input type="radio" id="radio-5" name="tabs" />
       <a class="tab" data-target="radio-5" href="/about_us" target="content">关于我们</a>
         <div class="flexbox">
+          <form action="/search" method="get">
             <div class="search">
               <div>
-                <input type="text" placeholder="Search . . ." required>
+                 <input type="text" name = "search" placeholder="Search . . ." required>
+                 <button type="button" id="Button" name="tabButton"></button>
+                <a class = "tabButton" data-target="Button" href = "/search" target = "content">go</a>
+                <!-- <button type="button" id="Button" name="tabButton" onclick="location.href='/search';" data-target="Button">点击我前往游戏分类</button> -->
               </div>
             </div>
+            </form>
           </div>
         <span class="glider"></span>
     </div>
 </div>
-
 
 </body>
 </html>
