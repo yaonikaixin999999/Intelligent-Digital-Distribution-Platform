@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
     res.render("login")
   });
 
-  router.post('/login/verify/query ', function(req, res, next) {
+  router.post('/verify', function(req, res, next) {
     var val = req.body;
     var user_id = val.user_id;
     var password = val.password;
@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
                 // res.send('登录成功');
                 res.render('main');
             } else {
-                res.render('error');
+                res.render('login');
             }
         }
     });
