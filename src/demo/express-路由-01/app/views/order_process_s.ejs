@@ -8,6 +8,24 @@
     <link rel="stylesheet" href="/stylesheets/order_process_s.css">
     <link rel="stylesheet" href="/stylesheets/refund_slip.css">
     <script src="/javascripts/user_order.js" defer></script>
+    <style>
+    .status-label {
+        background-color: #1e90ff; /* 蓝色背景 */
+        color: #fff; /* 白色文字 */
+        padding: 5px 10px; /* 内边距 */
+        border-radius: 5px; /* 圆角 */
+        font-size: 15px; /* 字体大小 */
+        font-weight: bold; /* 加粗文字 */
+        display: inline-block; /* 使 div 适应内容宽度 */
+    }
+    #reason{
+        width: 50%;
+        gap:    10px;
+    }
+    #image{
+        border-radius: 5px;
+    }
+    </style>
 </head>
 
 <body>
@@ -24,13 +42,14 @@
                     <button class="reject-refund-button" data-order-id="<%= order.order_id %>" onclick="handleRefund('<%= order.order_id %>', 'reject')">拒绝退款</button>
             </div>
             <div class="purchase-details">
-                <img src="<%= order.game_image %>" alt="<%= order.game_name %>">
-                <div class="info">
+                <img id = "image" src="<%= order.game_image %>" alt="<%= order.game_name %>">
+                <div class="info" id = "reason">
                     <h3>
                         <%= order.game_name %>
                     </h3>
                     <p>购买时间：<%= order.commit_time.toISOString().split('T')[0] %>
                     </p>
+                    <p>退款原因：<%= order.reson %></p>
                 </div>
                 <div class="purchase-price">¥<%= order.now_price %>
                 </div>

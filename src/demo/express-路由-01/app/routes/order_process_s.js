@@ -53,11 +53,11 @@ router.post('/accept', function (req, res, next) {
             return next(err);
         }else{
             connection.query(updateQuery, [orderId], (err, results) => {
-        if (err) {
-            return next(err);
-        }
-        res.json({ message: '接收成功' });
-    });
+            if (err) {
+                return next(err);
+            }
+            res.json({ message: '接收成功' });
+     });
         }
     });
 });
