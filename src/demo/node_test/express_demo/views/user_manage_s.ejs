@@ -6,40 +6,199 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>用户表</title>
     <link rel="stylesheet" href="/stylesheets/user_order.css">
-    <link rel="stylesheet" href="/stylesheets/refund_slip.css">
-    <script src="/javascripts/user_manage_s.js" defer></script>
+    <style>
+        .reject-refund-button {
+            background-color: #ff4d4d;
+            color: white;
+            /* 白色文字 */
+            border: none;
+            /* 无边框 */
+            padding: 5px 10px;
+            /* 内边距 */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            /* margin: 4px 2px; */
+            cursor: pointer;
+            border-radius: 5px;
+            /* 圆角 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            /* 阴影效果 */
+            width: 100px;
+        }
+
+        .accept-refund-button {
+            background-color: #4CAF50;
+            /* 绿色背景 */
+            color: white;
+            /* 白色文字 */
+            border: none;
+            /* 无边框 */
+            padding: 5px 10px;
+            /* 内边距 */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            /* margin: 4px 2px; */
+            cursor: pointer;
+            border-radius: 5px;
+            /* 圆角 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            /* 阴影效果 */
+            width: 100px;
+        }
+
+        #normal {
+            background-color: #4CAF50;
+            /* 绿色背景 */
+            color: white;
+            /* 白色文字 */
+            border: none;
+            /* 无边框 */
+            padding: 5px 10px;
+            /* 内边距 */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            /* margin: 4px 2px; */
+            cursor: pointer;
+            border-radius: 5px;
+            /* 圆角 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            /* 阴影效果 */
+            width: 80px;
+        }
+
+        #no_normal {
+            background-color: #ff4d4d;
+            color: white;
+            /* 白色文字 */
+            border: none;
+            /* 无边框 */
+            padding: 5px 10px;
+            /* 内边距 */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            /* margin: 4px 2px; */
+            cursor: pointer;
+            border-radius: 5px;
+            /* 圆角 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            /* 阴影效果 */
+            width: 80px;
+        }
+
+        .info {
+            max-width: 1000px;
+            margin-left: 20px;
+            gap: 40px;
+        }
+    </style>
+    </style>
 </head>
 
 <body>
     <div class="container">
         <h1>用户详情</h1>
-        <% orders.forEach(order=> { %>
+        <% users.forEach(user=> { %>
             <div class="purchase-item">
                 <div class="header">
-                    <div class="status-label <%= getStatusClass(order.flag) %>">
-                        <%= getStatusText(order.flag) %>
-                    </div>
-                    <% if (order.flag==='1' ) { %>
-                        <button class="cancel-refund-button" data-order-id="<%= order.order_id %>">允许退款</button>
-                        <% } else { %>
-                            <button class="refund-button" data-order-id="<%= order.order_id %>">退款</button>
+                    <%if (user.flag===1) { %>
+                        <div id="normal">
+                            <%= user.user_id %>
+                        </div>
+                        <% } else if (user.flag===0) { %>
+                            <div id="no_normal">
+                                <%= user.user_id %>
+                            </div>
+                            %>
                             <% } %>
+                                %>
                 </div>
+
                 <div class="purchase-details">
-                    <img src="<%= order.game_image %>" alt="<%= order.game_name %>">
                     <div class="info">
-                        <h3>
-                            <%= order.game_name %>
-                        </h3>
-                        <p>购买时间：<%= order.commit_time.toISOString().split('T')[0] %>
+
+                        <p>用户名：<%= user.cust_name %>
                         </p>
+                        <p>电子邮箱：<%= user.email %>
+                        </p>
+                        <p>电话号码：<%= user.phone_number %>
+                        </p>
+
                     </div>
-                    <div class="purchase-price">¥<%= order.now_price %>
-                    </div>
+                    <% if (user.flag===1) { %>
+                        <button class="reject-refund-button" data-user-id="<%= user.user_id %>"
+                            onclick="handleUserAction('<%= user.user_id %>', 'ban')">封禁</button>
+                        <% } else if (user.flag===0) { %>
+                            <button class="accept-refund-button" data-user-id="<%= user.user_id %>"
+                                onclick="handleUserAction('<%= user.user_id %>', 'unban')">解封</button>
+                            <% } %>
+                                %>
                 </div>
             </div>
             <% }) %>
     </div>
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // 绑定解封和封禁按钮的点击事件
+        document.querySelectorAll('.accept-refund-button, .reject-refund-button').forEach(button => {
+            button.addEventListener('click', async function (event) {
+                event.preventDefault(); // 防止默认行为
+
+                const userId = this.getAttribute('data-user-id'); // 获取用户ID
+                const action = this.classList.contains('accept-refund-button') ? 'unban' : 'ban'; // 判断是解封还是封禁
+
+                try {
+                    // 发送请求到服务器
+                    const response = await fetch(`/user_manage_s/${action}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ userId }), // 发送用户ID
+                    });
+
+                    if (response.ok) {
+                        //更新页面数据
+
+                        // 如果服务器响应成功，显示提示信息
+                        alert(action === 'unban' ? '已成功解封' : '已成功封禁');
+
+                        // 重新获取最新的用户数据
+                        const usersResponse = await fetch('/user_manage_s');
+                        if (usersResponse.ok) {
+                            window.location.reload(); // 如果 updatePage 未定义，刷新页面
+                            const usersData = await usersResponse.json();
+                            // 更新页面数据
+                            if (typeof updatePage === 'function') {
+                                updatePage(usersData);
+                            } else {
+                                window.location.reload(); // 如果 updatePage 未定义，刷新页面
+                            }
+                        } else {
+                            console.error('获取用户数据失败:', usersResponse.statusText);
+                        }
+                    } else {
+                        // 如果服务器返回错误，解析错误信息
+                        const errorData = await response.json();
+                        console.error('服务器返回错误:', errorData.message || response.statusText);
+                    }
+                } catch (error) {
+                    console.error('网络错误:', error);
+                }
+            });
+        });
+    });
+
+
+</script>
 
 </html>
