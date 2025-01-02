@@ -24,18 +24,20 @@ var searchRouter = require('./routes/search');
 var user_orderRouter = require('./routes/user_order');
 var all_gameRouter = require('./routes/all_game');
 var game_detailRouter = require('./routes/game_detail');
+var add_cartRouter = require('./routes/add_cart');
 
 //管理员端
 // var content_sRouter = require('./routes/content_s');
 var header_sRouter = require('./routes/header_s');
 var all_game_sRouter = require('./routes/all_game_s');
-// var game_detail_sRouter = require('./routes/game_detail_s');
+var game_detail_sRouter = require('./routes/game_detail_s');
 var order_process_sRouter = require('./routes/order_process_s');
 var personal_data_sRouter = require('./routes/personal_data_s');
 var update_data_sRouter = require('./routes/update_data_s');
 var user_manage_sRouter = require('./routes/user_manage_s');
 var game_shelf_sRouter = require('./routes/game_shelf_s');
 var count_volumn_sRouter = require('./routes/count_volumn_s');
+var game_update_sRouter = require('./routes/game_update_s');
 
 var app = express();
 
@@ -68,18 +70,20 @@ app.use('/search_game', search_gameRouter);
 app.use('/user_order', user_orderRouter);
 app.use('/all_game', all_gameRouter);
 app.use('/game_detail', game_detailRouter);
+app.use('/add_cart', add_cartRouter);
 
 //管理员端
 // app.use('/content_s',content_sRouter);
 app.use('/header_s', header_sRouter);
 app.use('/all_game_s', all_game_sRouter);
-// app.use('/game_detail_s',game_detail_sRouter);
+app.use('/game_detail_s', game_detail_sRouter);
 app.use('/order_process_s', order_process_sRouter);
 app.use('/personal_data_s', personal_data_sRouter);
 app.use('/update_data_s', update_data_sRouter);
 app.use('/user_manage_s', user_manage_sRouter);
 app.use('/game_shelf_s', game_shelf_sRouter);
 app.use('/count_volumn_s', count_volumn_sRouter);
+app.use('/game_update_s', game_update_sRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

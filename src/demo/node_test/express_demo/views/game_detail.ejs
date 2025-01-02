@@ -4,25 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="details.css">
-    <link rel="stylesheet" href="comment.css">
-    </link>
-    <script src="../JavaScript/comment.js"></script>
-    <title>游戏详情</title>
+    <link rel="stylesheet" href="/stylesheets/game_detail.css">
+    <link rel="stylesheet" href="/stylesheets/comment.css">
+    <title>游戏详情 - <%= game.game_name %>
+    </title>
 </head>
 
 <body>
     <div class="container">
         <div class="tabs">
+            <!-- views/game_detail.ejs -->
             <div class="image-container">
-                <img src="../../../demo/image/1.jpg" alt="游戏封面">
+                <img src="<%= game.game_image %>" alt="游戏封面">
             </div>
-            <div class="text-area">
-                <textarea placeholder="游戏简介"></textarea>
+            <div class="game-info">
+                <h1>
+                    <%= game.game_name %>™
+                </h1>
+                <p>
+                    <%= game.brief %>
+                </p>
+                <div class="release-info">
+                    <!-- <span>开发者: <%= game.label %></span><br> -->
+                    <span>发行日期: <%= game.shelf_time %></span>
+                </div>
                 <div class="tags">
-                    <span>动作</span>
-                    <span>冒险</span>
-                    <span>星球大战</span>
+                    <% if (game.game_label) { %>
+                        <% game.game_label.split(',').forEach(function(tag) { %>
+                            <span>
+                                <%= tag.trim() %>
+                            </span>
+                            <% }); %>
+                                <% } else { %>
+                                    <span>无标签</span>
+                                    <% } %>
                 </div>
             </div>
         </div>
@@ -31,85 +46,88 @@
     <div class="label-container">
         <div class="item-container">
             <div class="item-info">
-                购买 <span>《星球大战 绝地：幸存者™》</span>
+                购买 <span>《<%= game.game_name %>》</span>
             </div>
             <div class="discount">
-                <div class="discount-percentage">-75%</div>
-                <div class="price">
-                    <div class="original">¥298.00</div>
-                    <div class="current">¥74.50</div>
+                <div class="discount-percentage">
+                    <%= game.discount %>
                 </div>
-                <button class="add-to-cart">添加至购物车</button>
+                <div class="price">
+                    <div class="original">¥<%= game.last_price %>
+                    </div>
+                    <div class="current">¥<%= game.now_price %>
+                    </div>
+                </div>
+                <button class="add-to-cart" onclick="addToCart()">添加至愿望单</button>
             </div>
         </div>
-
     </div>
 
-    </div>
-
-    </div>
-
+    <!-- views/game_detail.ejs -->
     <div class="comment-container">
         <div class="header">
-            正在显示与上述筛选条件匹配的 <strong>5,324</strong> 篇评论（<span class="expand">重设</span>）
+            正在显示与上述筛选条件匹配的 <strong id="total-comments">
+                <%= comments ? comments.length : 0 %>
+            </strong> 篇评论（<span class="expand">重设</span>）
         </div>
 
-        <div class="container">
-            <!-- Left Section -->
-            <div class="left-section">
-                <div class="review-section">
-                    <div class="review-header">Eterne 推荐</div>
-                    <div class="review-content">
-                        一款被道德优化埋没的星战佳作。本作地形还原星球表面的细腻风貌。... <span class="expand">展开完整评测</span>
-                    </div>
-                    <div class="review-footer">
-                        <span>
-                            <img class="thumb" src="thumb-up.png" alt="thumb"> 69 人觉得这篇评测有价值
-                        </span>
-                        <span>2 人觉得这篇评测欢乐</span>
-                    </div>
-                </div>
-
-                <div class="review-section">
-                    <div class="review-header">鹦鹉娘子 推荐</div>
-                    <div class="review-content">
-                        绝对的好游戏，经过时间优化已经解决了大部分问题。...
-                    </div>
-                    <div class="review-footer">
-                        <span>
-                            <img class="thumb" src="thumb-up.png" alt="thumb"> 13 人觉得这篇评测有价值
-                        </span>
-                        <span>2 人觉得这篇评测欢乐</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Section -->
-            <div class="right-section">
-                <div class="review-section">
-                    <div class="review-header">Cyril</div>
-                    <div class="review-content">
-                        好玩，最大的问题是闪退。
-                    </div>
-                    <div class="review-footer">
-                        <span>3.7 小时</span>
-                    </div>
-                </div>
-
-                <div class="review-section">
-                    <div class="review-header">何惧之伴</div>
-                    <div class="review-content">
-                        游戏体验还算不错，没什么太多的问题。
-                    </div>
-                    <div class="review-footer">
-                        <span>31.1 小时</span>
-                    </div>
-                </div>
+        <div id="container1">
+            <!-- All Comments Section -->
+            <div class="all-section" id="all-reviews">
+                <% if (comments && comments.length> 0) { %>
+                    <% comments.forEach(function(comment) { %>
+                        <div class="review-section">
+                            <div class="review-header">
+                                <%= comment.user_id || '匿名用户' %>
+                            </div>
+                            <div class="review-content">
+                                <%= comment.comment %>
+                            </div>
+                            <div class="review-footer">
+                                <span>
+                                    <!-- <img class="thumb" src="thumb-up.png" alt="thumb"> <%= comment.likes || 0 %> 人觉得这篇评测有价值 -->
+                                </span>
+                                <!-- <span><%= comment.humor || 0 %> 人觉得这篇评测欢乐</span> -->
+                                <span>
+                                    <%= comment.comment_time || '未知时间' %>
+                                </span>
+                            </div>
+                        </div>
+                        <% }); %>
+                            <% } else { %>
+                                <p>暂无评论。</p>
+                                <% } %>
             </div>
         </div>
     </div>
 
-</html>
+    <!-- 确保 comment.js 在内联脚本之前加载 -->
+    <!-- <script defer src="/javascripts/comment.js"></script> -->
+    <script>
+        function addToCart() {
+            const gameId = '<%= game.game_id %>'; // 假设game对象中有game_id属性
+            console.log('Adding game with ID:', gameId);
+            fetch('/add_cart/addToCart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ gameId: gameId })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('商品已成功添加到购物车！');
+                    } else {
+                        alert('添加到购物车失败，请重试。');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('添加到购物车时发生错误，请重试。');
+                });
+        }
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改个人资料</title>
+    <link rel="stylesheet" href="/stylesheets/game_update_s.css">
+    <script src="/javascripts/game_update_s.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="/game_detail_s/<%= encodeURIComponent(game.game_name) %>" id="backButton" class="back">← 返回</a>
+            <h1>修改<%= game.game_name %>信息</h1>
+        </div>
+
+        <div class="section">
+            <div class="section-title">基础资料</div>
+            <div class="info-item-not">
+                <span class="info-label">游戏 ID</span>
+                <span class="info-value">
+                    <%= game.game_id %>
+                </span>
+            </div>
+            <div class="info-item" data-field="game_name" data-value="<%= game.game_name %>">
+                <span class="info-label">游戏名称</span>
+                <span class="info-value">
+                    <%= game.game_name %> <span class="arrow">›</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">详细资料</div>
+            <div class="info-item" data-field="last_price" data-value="<%= game.last_price %>">
+                <span class="info-label">原价</span>
+                <span class="info-value">
+                    <%= game.last_price %> <span class="arrow">›</span>
+                </span>
+            </div>
+            <div class="info-item" data-field="discount" data-value="<%= game.discount %>">
+                <span class="info-label">折扣</span>
+                <span class="info-value">
+                    <%= game.discount %> <span class="arrow">›</span>
+                </span>
+            </div>
+            <div class="info-item" data-field="brief" data-value="<%= game.brief %>">
+                <span class="info-label">游戏简介</span>
+                <span class="info-value" id="briefValue">
+                    <%= game.brief %> <span class="arrow">›</span>
+                </span>
+            </div>
+            <div class="info-item" data-field="game_volume" data-value="<%= game.game_volume %>">
+                <span class="info-label">游戏销量</span>
+                <span class="info-value">
+                    <%= game.game_volume %> <span class="arrow">›</span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态对话框 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle" class="modalTitle">修改信息</h2>
+            <form id="editForm">
+                <input type="text" id="value" name="value">
+                <button type="submit">保存</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

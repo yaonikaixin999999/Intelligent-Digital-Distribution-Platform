@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/game_detail.css">
+    <link rel="stylesheet" href="/stylesheets/comment.css">
+    <title>游戏详情 - <%= game.game_name %>
+    </title>
+    <link src="/stylesheets/change_detail.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="tabs">
+            <!-- views/game_detail.ejs -->
+            <div class="image-container">
+                <img src="<%= game.game_image %>" alt="游戏封面">
+            </div>
+            <div class="game-info">
+                <h1>
+                    <%= game.game_name %>™
+                </h1>
+                <p>
+                    <%= game.brief %>
+                </p>
+                <div class="release-info">
+                    <span>发行日期: <%= game.shelf_time %></span>
+                </div>
+                <div class="tags">
+                    <% if (game.game_label) { %>
+                        <% game.game_label.split(',').forEach(function(tag) { %>
+                            <span>
+                                <%= tag.trim() %>
+                            </span>
+                            <% }); %>
+                                <% } else { %>
+                                    <span>无标签</span>
+                                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="label-container">
+        <div class="item-container">
+            <div class="item-info">
+                购买 <span>《<%= game.game_name %>》</span>
+            </div>
+            <div class="discount">
+                <div class="discount-percentage">
+                    <%= game.discount %>
+                </div>
+                <div class="price">
+                    <div class="original">¥<%= game.last_price %>
+                    </div>
+                    <div class="current">¥<%= game.now_price %>
+                    </div>
+                </div>
+                <button class="add-to-cart"
+                    onclick="window.location.href='/game_update_s/<%= game.game_id %>'">更改游戏详情</button>
+                <button class="down-shelf" onclick="confirmShelfDown('<%= game.game_name %>')">下架游戏</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-container">
+        <div class="header">
+            正在显示与上述筛选条件匹配的 <strong id="total-comments">
+                <%= comments ? comments.length : 0 %>
+            </strong> 篇评论（<span class="expand">重设</span>）
+        </div>
+
+        <div id="container1">
+            <!-- All Comments Section -->
+            <div class="all-section" id="all-reviews">
+                <% if (comments && comments.length> 0) { %>
+                    <% comments.forEach(function(comment) { %>
+                        <div class="review-section" id="comment-<%= comment.id %>">
+                            <div class="review-header">
+                                <%= comment.user_id || '匿名用户' %>
+                            </div>
+                            <div class="review-content">
+                                <%= comment.comment %>
+                            </div>
+                            <div class="review-footer">
+                                <span class="comment-time">
+                                    <%= comment.comment_time %>
+                                </span>
+                                <button class="delete-comment-button"
+                                    data-comment-id="<%= comment.comment %>">删除评论</button>
+                            </div>
+                        </div>
+                        <% }); %>
+                            <% } else { %>
+                                <p>暂无评论。</p>
+                                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <!-- 按钮触发模态框 -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 添加点击事件监听器给所有删除评论链接
+            document.querySelectorAll('.delete-comment-link').forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault(); // 阻止默认行为（即跳转）
+
+                    const commentId = this.getAttribute('data-comment-id');
+                    console.log('Deleting comment with ID:', commentId);
+
+                    fetch(`/delete_comment_s/comment/${commentId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // 如果删除成功，从DOM中移除该评论
+                                const commentElement = document.getElementById(`comment-${commentId}`);
+                                if (commentElement) {
+                                    commentElement.remove();
+                                }
+                                location.reload();
+                                // 更新评论总数
+                                updateCommentCount();
+                                alert('评论已成功删除！');
+                                //刷新当前页面
+
+                            } else {
+                                alert('删除评论失败，请重试。');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('删除评论时发生错误，请重试。');
+                        });
+                });
+            });
+
+            function updateCommentCount() {
+                const totalComments = document.querySelectorAll('.review-section').length;
+                document.getElementById('total-comments').textContent = totalComments;
+            }
+
+            document.querySelectorAll('.comment-time').forEach(function (span) {
+                const originalTime = span.textContent;
+                const date = new Date(originalTime);
+                if (!isNaN(date.getTime())) { // 检查日期是否有效
+                    const formattedTime = date.toLocaleString('zh-CN', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: false
+                    });
+                    span.textContent = formattedTime;
+                }
+            });
+        });
+
+        function confirmShelfDown(gameName) {
+            if (confirm(`确认下架《${gameName}》吗？`)) {
+                console.log(`Sending DELETE request to /game_detail_s/shelf_down/${game.game_id}`);
+                fetch(`/game_detail_s/shelf_down/${game.game_id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => {
+                        console.log('Response:', response);
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Data:', data);
+                        if (data.success) {
+                            alert('游戏已成功下架！');
+                            window.location.href = '/'; // 退出当前页面，可以重定向到其他页面
+                        } else {
+                            alert('下架游戏失败，请重试。');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('下架游戏时发生错误，请重试。');
+                    });
+            }
+        }
+
+    </script>
+</body>
+
+</html>
