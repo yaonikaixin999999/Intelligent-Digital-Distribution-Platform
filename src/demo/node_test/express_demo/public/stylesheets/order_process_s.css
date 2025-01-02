@@ -1,0 +1,145 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header button {
+    float: right;
+    /* 将按钮放到右边 */
+}
+
+h1 {
+    font-size: 35px;
+    margin-bottom: 40px;
+    color: #4d84e2;
+}
+
+.purchase-item {
+    position: relative;
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.purchase-item:last-child {
+    border-bottom: none;
+}
+
+.purchase-item .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.purchase-item img {
+    width: 100px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.purchase-details {
+    display: flex;
+    align-items: center;
+}
+
+.purchase-details .info {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.purchase-details h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #1e90ff;
+    margin-right: 10px;
+    /* 添加间距 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+    /* 根据需要调整最大宽度 */
+}
+
+.purchase-details p {
+    margin: 0;
+    color: #666;
+}
+
+.purchase-price {
+    font-size: 18px;
+    color: #4caf50;
+    margin-left: auto;
+}
+
+.success-label {
+    background-color: #1e90ff;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.accept-refund-button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    width: 100px;
+    cursor: pointer;
+    margin-left: 5px;
+    /* 添加右边距，使按钮之间更近 */
+}
+
+.reject-refund-button {
+    background-color: #fb0202;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    width: 100px;
+    cursor: pointer;
+    margin-left: -700px;
+    /* 添加左边距，使按钮之间更近 */
+}
+
+.status-label {
+    padding: 5px 10px;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.status-yellow {
+    background-color: #ecf23b;
+}
+
+.status-red {
+    background-color: #ff4d4d;
+}
+
+.status-green {
+    background-color: #1e90ff;
+}
+
+.status-blue {
+    background-color: #4caf50;
+}

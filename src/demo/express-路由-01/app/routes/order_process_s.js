@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const connection = require('../sql'); // 引入数据库连接
+const connection = require('./sql'); // 引入数据库连接
 
 // 获取所有订单（GET请求）
 router.get('/', function (req, res, next) {
@@ -18,7 +18,7 @@ router.get('/', function (req, res, next) {
         console.log(results);
 
         res.render('order_process_s', {
-            refund_order: results, 
+            refund_order: results,
         });
     });
 });
@@ -31,16 +31,16 @@ router.post('/reject', function (req, res, next) {
     connection.query(deleteQuery, [orderId], (err, results) => {
         if (err) {
             return next(err);
-        }else{
+        } else {
             connection.query(updateQuery, [orderId], (err, results) => {
-        if (err) {
-            return next(err);
+                if (err) {
+                    return next(err);
+                }
+                res.json({ message: '拒绝成功' });
+            });
         }
-        res.json({ message: '拒绝成功' });
     });
-        }
-    });
-    
+
 });
 
 // 接受退款（POST请求）
@@ -51,13 +51,13 @@ router.post('/accept', function (req, res, next) {
     connection.query(deleteQuery, [orderId], (err, results) => {
         if (err) {
             return next(err);
-        }else{
+        } else {
             connection.query(updateQuery, [orderId], (err, results) => {
-            if (err) {
-                return next(err);
-            }
-            res.json({ message: '接收成功' });
-     });
+                if (err) {
+                    return next(err);
+                }
+                res.json({ message: '接收成功' });
+            });
         }
     });
 });
