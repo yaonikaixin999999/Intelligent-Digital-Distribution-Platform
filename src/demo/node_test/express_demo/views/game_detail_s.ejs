@@ -60,7 +60,7 @@
                 </div>
                 <button class="add-to-cart"
                     onclick="window.location.href='/game_update_s/<%= game.game_id %>'">更改游戏详情</button>
-                <button class="down-shelf" onclick="openModal()">下架游戏</button>
+                <button class="down-shelf" onclick="confirmShelfDown('<%= game.game_name %>')">下架游戏</button>
             </div>
         </div>
     </div>
@@ -165,6 +165,36 @@
                 }
             });
         });
+
+        function confirmShelfDown(gameName) {
+            if (confirm(`确认下架《${gameName}》吗？`)) {
+                console.log(`Sending DELETE request to /game_detail_s/shelf_down/${game.game_id}`);
+                fetch(`/game_detail_s/shelf_down/${game.game_id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => {
+                        console.log('Response:', response);
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Data:', data);
+                        if (data.success) {
+                            alert('游戏已成功下架！');
+                            window.location.href = '/'; // 退出当前页面，可以重定向到其他页面
+                        } else {
+                            alert('下架游戏失败，请重试。');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('下架游戏时发生错误，请重试。');
+                    });
+            }
+        }
+
     </script>
 </body>
 
