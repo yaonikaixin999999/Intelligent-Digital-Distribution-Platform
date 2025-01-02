@@ -4,25 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全部游戏 - <%= search_term %></title>
+    <title>统计游戏销量</title>
     <link rel="stylesheet" href="/stylesheets/search_game.css">
     <style>
-        /* stylesheets/style.css */
-    a {
-        text-decoration: none;
-        color: initial; /* 或者指定你想要的颜色 */
-    }
-
-    a:visited {
-        color: initial; /* 或者指定你想要的颜色 */
-    }
+        .game-volumn-label {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #4d84e2, #4d84e2);
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-right:20px;
+            width:60px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="wishlist-container">
-            <% search.forEach(function(item) { %>
-                <a href="/game_detail?game_name=<%= encodeURIComponent(item.game_name) %>" target="_blank">
+            <% game_volumn.forEach(function(item) { %>
                     <div class="wishlist-item">
                         <img src="<%= item.game_image %>" alt="游戏封面">
                         <div class="wishlist-item-content">
@@ -31,11 +37,10 @@
                                     <%= item.game_name && item.game_name.length > 20 ? item.game_name.substring(0, 20) + '...' : item.game_name || '未知游戏' %>
                                 </h2>
                                 <p><%= item.game_label %></p>
-                                <p><%= item.discount %> <%= item.last_price %></p>
                             </div>
+                            <label class="game-volumn-label"><%= item.game_volume %></label>
                         </div>
                     </div>
-                </a>
             <% }) %>
         </div>
     </div>
