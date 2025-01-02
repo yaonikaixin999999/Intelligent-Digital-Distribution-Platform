@@ -16,7 +16,8 @@ body {
 }
 
 .header button {
-    float: right; /* 将按钮放到右边 */
+    float: right;
+    /* 将按钮放到右边 */
 }
 
 h1 {
@@ -103,7 +104,8 @@ h1 {
     border-radius: 5px;
     width: 80px;
     cursor: pointer;
-    margin-left: 5px; /* 添加右边距，使按钮之间更近 */
+    margin-right: 20px;
+    /* 添加右边距，使按钮之间更近 */
 }
 
 .reject-refund-button {
@@ -114,7 +116,8 @@ h1 {
     border-radius: 5px;
     width: 80px;
     cursor: pointer;
-    margin-left: -500px; /* 添加左边距，使按钮之间更近 */
+    margin-right: 50px;
+    /* 添加左边距，使按钮之间更近 */
 }
 
 .status-label {
