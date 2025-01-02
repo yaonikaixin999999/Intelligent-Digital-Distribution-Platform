@@ -5,7 +5,7 @@ const connection = require('./sql'); // 引入数据库连接
 // 获取所有订单（GET请求）
 router.get('/', function (req, res, next) {
     const query = `
-        SELECT user_order.*, game.*
+        SELECT user_order.*, game.*,refund_table.*,user_order.flag
         FROM user_order
         join refund_table ON user_order.order_id = refund_table.order_id
         JOIN game ON user_order.game_id = game.game_id
