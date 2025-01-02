@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
             return res.status(500).send('Error retrieving data from database');
         }
         console.log(data); // 打印查询结果以确认其结构
-        res.render('all_game', { search: data, search_term: game_name });
+        res.render('all_game_s', { search: data, search_term: game_name });
     });
 });
 
