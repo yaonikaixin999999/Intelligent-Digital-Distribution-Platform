@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>评论详情</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .comment-detail {
+            border: 1px solid #ccc;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .review-header {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .review-content {
+            margin-bottom: 10px;
+        }
+        .review-footer {
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="comment-detail">
+        <div class="review-header"><%= comment.user_id || '匿名用户' %></div>
+        <div class="review-content">
+            <%= comment.comment %> 
+        </div>
+        <div class="review-footer">
+            <span>
+                <!-- <img class="thumb" src="thumb-up.png" alt="thumb"> <%= comment.likes || 0 %> 人觉得这篇评测有价值 -->
+            </span>
+            <!-- <span><%= comment.humor || 0 %> 人觉得这篇评测欢乐</span> -->
+            <span><%= comment.comment_time || '未知时间' %> 小时</span>
+        </div>
+    </div>
+</body>
+
+</html>
