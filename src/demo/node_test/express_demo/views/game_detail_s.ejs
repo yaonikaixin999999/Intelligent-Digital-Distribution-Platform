@@ -26,7 +26,6 @@
                     <%= game.brief %>
                 </p>
                 <div class="release-info">
-                    <span>开发者: <%= game.label %></span><br>
                     <span>发行日期: <%= game.shelf_time %></span>
                 </div>
                 <div class="tags">
@@ -59,7 +58,9 @@
                     <div class="current">¥<%= game.now_price %>
                     </div>
                 </div>
-                <button class="add-to-cart" onclick="openModal()">更改游戏详情</button>
+                <button class="add-to-cart"
+                    onclick="window.location.href='/game_update_s/<%= game.game_id %>'">更改游戏详情</button>
+                <button class="down-shelf" onclick="openModal()">下架游戏</button>
             </div>
         </div>
     </div>
@@ -100,10 +101,6 @@
     </div>
 
     <!-- 按钮触发模态框 -->
-
-
-    <!-- 确保 comment.js 在内联脚本之前加载 -->
-    <!-- <script defer src="/javascripts/comment.js"></script> -->
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

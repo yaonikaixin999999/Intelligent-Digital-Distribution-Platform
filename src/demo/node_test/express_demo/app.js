@@ -37,6 +37,7 @@ var update_data_sRouter = require('./routes/update_data_s');
 var user_manage_sRouter = require('./routes/user_manage_s');
 var game_shelf_sRouter = require('./routes/game_shelf_s');
 var count_volumn_sRouter = require('./routes/count_volumn_s');
+var game_update_sRouter = require('./routes/game_update_s');
 
 var app = express();
 
@@ -82,6 +83,7 @@ app.use('/update_data_s', update_data_sRouter);
 app.use('/user_manage_s', user_manage_sRouter);
 app.use('/game_shelf_s', game_shelf_sRouter);
 app.use('/count_volumn_s', count_volumn_sRouter);
+app.use('/game_update_s', game_update_sRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

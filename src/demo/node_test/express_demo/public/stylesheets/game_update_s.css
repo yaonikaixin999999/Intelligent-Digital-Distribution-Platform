@@ -1,0 +1,228 @@
+/* update.css */
+body {
+    margin: 0;
+    padding-top: 50px;
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    transform: scale(1.2);
+    transform-origin: center;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-value {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 400px;
+    /* 你可以根据需要调整这个值 */
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #e6f0ff;
+}
+
+.header h1 {
+    font-size: 20px;
+    margin: 0;
+    color: #007acc;
+}
+
+.header .back {
+    font-size: 16px;
+    color: #007acc;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.section {
+    margin-top: 20px;
+}
+
+.section-title {
+    font-size: 16px;
+    color: #007acc;
+    margin-bottom: 10px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #e6f0ff;
+    cursor: pointer;
+    /* 添加鼠标指针样式 */
+    transition: background-color 0.3s;
+    /* 添加过渡效果 */
+}
+
+.info-item:hover {
+    background-color: #f0f0f0;
+    /* 鼠标悬停时背景变灰白 */
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-item-UN {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #e6f0ff;
+    cursor: pointer;
+    /* 添加鼠标指针样式 */
+    transition: background-color 0.3s;
+    /* 添加过渡效果 */
+}
+
+.info-item-UN:hover {
+    background-color: #f0f0f0;
+    /* 鼠标悬停时背景变灰白 */
+}
+
+.info-item-UN:last-child {
+    border-bottom: none;
+}
+
+.info-item-not {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #e6f0ff;
+}
+
+.info-item-not:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-size: 14px;
+    color: #555;
+}
+
+.info-value {
+    font-size: 14px;
+    color: #333;
+}
+
+.info-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.arrow {
+    font-size: 14px;
+    color: #999;
+}
+
+/* 添加点击时的样式 */
+.info-item.active {
+    background-color: #e0e0e0;
+}
+
+/* 添加点击时的样式 */
+.info-item-UN.active {
+    background-color: #e0e0e0;
+}
+
+/* 模态对话框样式 */
+.modal {
+    display: none;
+    /* 默认隐藏 */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /* 去掉背景颜色 */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+    /* 设置模态框宽度 */
+    border-radius: 8px;
+}
+
+.modalTitle {
+    color: #007acc;
+    /* 淡蓝色 */
+    margin-bottom: 5px;
+    /* 减小标题和内容之间的距离 */
+    margin-top: 0px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+form input[type="text"] {
+    flex: 1;
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* 半透明背景 */
+    color: #333;
+    transition: background-color 0.3s;
+    /* 添加过渡效果 */
+}
+
+form input[type="text"]:focus {
+    background-color: #ffffff;
+    /* 点击时背景变白 */
+}
+
+form button {
+    padding: 5px 10px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #005f99;
+}
