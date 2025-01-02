@@ -27,7 +27,7 @@
     <div class="container">
         <div class="wishlist-container">
             <% search.forEach(function(item) { %>
-                <a href="/game_detail?game_name=<%= encodeURIComponent(item.game_name) %>" target="_blank">
+                <a href="/game_detail_s?game_name=<%= encodeURIComponent(item.game_name) %>" target="_blank">
                     <div class="wishlist-item">
                         <img src="<%= item.game_image %>" alt="游戏封面">
                         <div class="wishlist-item-content">
