@@ -5,41 +5,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>订单表</title>
-    <link rel="stylesheet" href="/stylesheets/user_order.css">
+    <link rel="stylesheet" href="/stylesheets/order_process_s.css">
     <link rel="stylesheet" href="/stylesheets/refund_slip.css">
     <script src="/javascripts/user_order.js" defer></script>
+    <style>
+    .status-label {
+        background-color: #1e90ff; /* 蓝色背景 */
+        color: #fff; /* 白色文字 */
+        padding: 5px 10px; /* 内边距 */
+        border-radius: 5px; /* 圆角 */
+        font-size: 15px; /* 字体大小 */
+        font-weight: bold; /* 加粗文字 */
+        display: inline-block; /* 使 div 适应内容宽度 */
+    }
+    #reason{
+        width: 50%;
+        gap:    10px;
+    }
+    #image{
+        border-radius: 5px;
+    }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>退款订单</h1>
-        <% orders.forEach(order=> { %>
-            <div class="purchase-item">
-                <div class="header">
-                    <div class="status-label <%= getStatusClass(order.flag) %>">
-                        <%= getStatusText(order.flag) %>
-                    </div>
-                    <% if (order.flag==='1' ) { %>
-                        <button class="cancel-refund-button" data-order-id="<%= order.order_id %>">允许退款</button>
-                        <% } else { %>                                                                                                     
-                            <button class="refund-button" data-order-id="<%= order.order_id %>">退款</button>
-                            <% } %>
+   <div class="container">
+    <h1>退款订单</h1>
+    <% refund_order.forEach(order=> { %>
+        <div class="purchase-item">
+            <div class="header">
+                <div class="status-label">
+                    <%= order.user_id %>
+                    <!-- 用户名 -->
+                </div>                                                                                                    
+                    <button class="accept-refund-button" data-order-id="<%= order.order_id %>" onclick="handleRefund('<%= order.order_id %>', 'accept')">允许退款</button>
+                    <button class="reject-refund-button" data-order-id="<%= order.order_id %>" onclick="handleRefund('<%= order.order_id %>', 'reject')">拒绝退款</button>
+            </div>
+            <div class="purchase-details">
+                <img id = "image" src="<%= order.game_image %>" alt="<%= order.game_name %>">
+                <div class="info" id = "reason">
+                    <h3>
+                        <%= order.game_name %>
+                    </h3>
+                    <p>购买时间：<%= order.commit_time.toISOString().split('T')[0] %>
+                    </p>
+                    <p>退款原因：<%= order.reson %></p>
                 </div>
-                <div class="purchase-details">
-                    <img src="<%= order.game_image %>" alt="<%= order.game_name %>">
-                    <div class="info">
-                        <h3>
-                            <%= order.game_name %>
-                        </h3>
-                        <p>购买时间：<%= order.commit_time.toISOString().split('T')[0] %>
-                        </p>
-                    </div>
-                    <div class="purchase-price">¥<%= order.now_price %>
-                    </div>
+                <div class="purchase-price">¥<%= order.now_price %>
                 </div>
             </div>
-            <% }) %>
-    </div>
+        </div>
+        <% }) %>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 选择所有拒绝退款按钮并为它们添加点击事件监听器
+        document.querySelectorAll('.reject-refund-button').forEach(button => {
+            button.addEventListener('click', async function(event) {
+                event.preventDefault(); // 防止默认行为
+
+                const orderId = this.getAttribute('data-order-id'); // 获取订单ID
+
+                try {
+                    const response = await fetch('/order_process_s/reject', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ orderId, action: 'reject' }) // 发送订单ID和动作到服务器
+                    });
+
+                    if (response.ok) {
+                        window.location.reload();
+                        // 如果服务器响应成功，更新UI或显示消息给用户
+                        alert('已成功拒绝退款');
+                        // 可能需要刷新页面或移除对应的订单项
+                    } else {
+                        console.error('服务器返回错误:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('网络错误:', error);
+                }
+            });
+        });
+
+        document.querySelectorAll('.accept-refund-button').forEach(button => {
+            button.addEventListener('click', async function(event) {
+                event.preventDefault(); // 防止默认行为
+
+                const orderId = this.getAttribute('data-order-id'); // 获取订单ID
+
+                try {
+                    const response = await fetch('/order_process_s/accept', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ orderId, action: 'accept' }) // 发送订单ID和动作到服务器
+                    });
+
+                    if (response.ok) {
+                        //刷新页面
+                        window.location.reload();
+                        // 如果服务器响应成功，更新UI或显示消息给用户
+                        alert('已接收退款');
+                        // 可能需要刷新页面或移除对应的订单项
+                    } else {
+                        console.error('服务器返回错误:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('网络错误:', error);
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 
 </html>
