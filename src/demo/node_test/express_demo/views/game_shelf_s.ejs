@@ -4,29 +4,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- <link rel="stylesheet" href="/stylesheets/user_order.css"> -->
-    <!-- <link rel="stylesheet" href="/stylesheets/refund_slip.css"> -->
+    <title>上架游戏</title>
+    <link rel="stylesheet" href="/stylesheets/update.css">
+    <script src="/javascripts/game_shelf_s.js" defer></script>
+    <style>
+        /* 添加一些基本样式以确保按钮可见 */
+        .action-buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .submit-game-button {
+            padding: 10px 20px;
+            font-size: 12px;
+            width: 100px;
+            color: white;
+            background-color: #007acc;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-game-button:hover {
+            background-color: #005f99;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="refundModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <div class="form-container">
-                <form class="form" id="refundForm">
-                    <input type="hidden" id="orderId" name="orderId">
-                    <div class="form-group">
-                        <label for="reason">上架游戏</label>
-                        <input type="text" id="reason" name="reason" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="specificReason">具体原因</label>
-                        <textarea name="specificReason" id="specificReason" rows="10" cols="50" required></textarea>
-                    </div>
-                    <button class="form-submit-btn" type="submit">提交</button>
-                </form>
+    <div class="container">
+        <div class="header">
+            <h1>上架游戏</h1>
+        </div>
+
+        <div class="section">
+            <div class="section-title">基础资料</div>
+            <div class="info-item" data-field="game_id">
+                <span class="info-label">游戏 ID</span>
+                <span class="info-value" id="game_id">游戏 ID</span>
             </div>
+            <div class="info-item" data-field="game_name">
+                <span class="info-label">游戏名称</span>
+                <span class="info-value" id="game_name"> 游戏名称<span class="arrow"></span></span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">详细资料</div>
+            <div class="info-item" data-field="game_image">
+                <span class="info-label">封面</span>
+                <span class="info-value" id="game_image"> 详细资料<span class="arrow"></span></span>
+            </div>
+            <div class="info-item" data-field="game_label">
+                <span class="info-label">标签</span>
+                <span class="info-value" id="game_label"> 标签<span class="arrow"></span></span>
+            </div>
+            <div class="info-item" data-field="last_price">
+                <span class="info-label">售价</span>
+                <span class="info-value" id="last_price"> 售价<span class="arrow"></span></span>
+            </div>
+            <div class="info-item" data-field="discount">
+                <span class="info-label">折扣</span>
+                <span class="info-value" id="discount"> 折扣<span class="arrow"></span></span>
+            </div>
+            <div class="info-item" data-field="game_url">
+                <span class="info-label">链接</span>
+                <span class="info-value" id="game_url"> 链接<span class="arrow"></span></span>
+            </div>
+            <div class="info-item" data-field="brief">
+                <span class="info-label">简介</span>
+                <span class="info-value" id="brief">简介</span>
+            </div>
+        </div>
+        <!-- 添加“上架游戏”按钮 -->
+        <div class="action-buttons">
+            <button id="submitGame" class="submit-game-button">上架游戏</button>
+        </div>
+    </div>
+
+    <!-- 模态对话框 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle" class="modalTitle">添加信息</h2>
+            <form id="editForm">
+                <input type="text" id="value" name="value">
+                <button type="submit">保存</button>
+            </form>
         </div>
     </div>
 </body>
