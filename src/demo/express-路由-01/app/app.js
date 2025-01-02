@@ -52,20 +52,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/users', usersRouter);
 // app.use('/users', articlesRouter);
-app.use('/add_cart',add_cartRouter);
+app.use('/add_cart', add_cartRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
-app.use('/content',contnetRouter);
-app.use('/header',headerRouter);
-app.use('/order_set_z',order_set_zRouter);
-app.use('/shopping_cart',shopping_cartRouter);
+app.use('/content', contnetRouter);
+app.use('/header', headerRouter);
+app.use('/order_set_z', order_set_zRouter);
+app.use('/shopping_cart', shopping_cartRouter);
 
 // app.use('/game_classify',game_classifyRouter);
 // app.use('/classify_left',classify_leftRouter);
 // app.use('/classify_right',classify_rightRouter);
-app.use('/search',searchRouter);
-app.use('/all_game',all_gameRouter);
-app.use('/game_detail',game_detailRouter);
+app.use('/search', searchRouter);
+app.use('/all_game', all_gameRouter);
+app.use('/game_detail', game_detailRouter);
 
 //bannerlist
 // app.use('/bannerlist',bannerList);
@@ -73,8 +73,8 @@ app.use('/game_detail',game_detailRouter);
 
 //管理员端
 // app.use('/content_s',content_sRouter);
-app.use('/header_s',header_sRouter);
-app.use('/all_game_s',all_game_sRouter);
+app.use('/header_s', header_sRouter);
+app.use('/all_game_s', all_game_sRouter);
 // app.use('/game_detail_s',game_detail_sRouter);
 app.use('/order_process_s',order_process_sRouter);
 app.use('/personal_data_s',personal_data_sRouter);
@@ -82,16 +82,15 @@ app.use('/update_data_s',update_data_sRouter);
 app.use('/user_manage_s',user_manage_sRouter);
 app.use('/game_shelf_s',game_shelf_sRouter);
 app.use('/count_volumn_s',count_volumn_sRouter);
-app.use('/game_detail_s',game_detail_sRouter);
-app.use('/delete_comment_s',delete_comment_sRouter);
+
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
