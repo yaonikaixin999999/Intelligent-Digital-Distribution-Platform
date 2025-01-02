@@ -21,6 +21,18 @@ var add_cartRouter = require('./routes/add_cart');
 var searchRouter = require('./routes/search');
 // var bannerList = require('./routes/login');
 
+//管理员端
+// var content_sRouter = require('./routes/content_s');
+var header_sRouter = require('./routes/header_s');
+var all_game_sRouter = require('./routes/all_game_s');
+// var game_detail_sRouter = require('./routes/game_detail_s');
+var order_process_sRouter = require('./routes/order_process_s');
+var personal_data_sRouter = require('./routes/personal_data_s');
+var update_data_sRouter = require('./routes/update_data_s');
+var user_manage_sRouter = require('./routes/user_manage_s');
+var game_shelf_sRouter = require('./routes/game_shelf_s');
+var count_volumn_sRouter = require('./routes/count_volumn_s');
+//管理员端模块
 
 var app = express();
 
@@ -44,6 +56,7 @@ app.use('/content',contnetRouter);
 app.use('/header',headerRouter);
 app.use('/order_set_z',order_set_zRouter);
 app.use('/shopping_cart',shopping_cartRouter);
+
 // app.use('/game_classify',game_classifyRouter);
 // app.use('/classify_left',classify_leftRouter);
 // app.use('/classify_right',classify_rightRouter);
@@ -53,6 +66,19 @@ app.use('/game_detail',game_detailRouter);
 
 //bannerlist
 // app.use('/bannerlist',bannerList);
+
+
+//管理员端
+// app.use('/content_s',content_sRouter);
+app.use('/header_s',header_sRouter);
+app.use('/all_game_s',all_game_sRouter);
+// app.use('/game_detail_s',game_detail_sRouter);
+app.use('/order_process_s',order_process_sRouter);
+app.use('/personal_data_s',personal_data_sRouter);
+app.use('/update_data_s',update_data_sRouter);
+app.use('/user_manage_s',user_manage_sRouter);
+app.use('/game_shelf_s',game_shelf_sRouter);
+app.use('/count_volumn_s',count_volumn_sRouter);
 
 
 // catch 404 and forward to error handler

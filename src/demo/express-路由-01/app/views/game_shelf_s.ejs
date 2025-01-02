@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="/stylesheets/user_order.css"> -->
+    <!-- <link rel="stylesheet" href="/stylesheets/refund_slip.css"> -->
+</head>
+<body>
+    <div id="refundModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="form-container">
+                <form class="form" id="refundForm">
+                    <input type="hidden" id="orderId" name="orderId">
+                    <div class="form-group">
+                        <label for="reason">上架游戏</label>
+                        <input type="text" id="reason" name="reason" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="specificReason">具体原因</label>
+                        <textarea name="specificReason" id="specificReason" rows="10" cols="50" required></textarea>
+                    </div>
+                    <button class="form-submit-btn" type="submit">提交</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

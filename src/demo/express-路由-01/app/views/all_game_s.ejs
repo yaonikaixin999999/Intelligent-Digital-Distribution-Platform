@@ -1,0 +1,43 @@
+<!-- views/all_game.ejs -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全部游戏 - <%= search_term %></title>
+    <link rel="stylesheet" href="/stylesheets/search_game.css">
+    <style>
+        /* stylesheets/style.css */
+    a {
+        text-decoration: none;
+        color: initial; /* 或者指定你想要的颜色 */
+    }
+
+    a:visited {
+        color: initial; /* 或者指定你想要的颜色 */
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="wishlist-container">
+            <% search.forEach(function(item) { %>
+                <a href="/game_detail?game_name=<%= encodeURIComponent(item.game_name) %>" target="_blank">
+                    <div class="wishlist-item">
+                        <img src="<%= item.game_image %>" alt="游戏封面">
+                        <div class="wishlist-item-content">
+                            <div class="wishlist-item-details">
+                                <h2>
+                                    <%= item.game_name && item.game_name.length > 20 ? item.game_name.substring(0, 20) + '...' : item.game_name || '未知游戏' %>
+                                </h2>
+                                <p><%= item.game_label %></p>
+                                <p><%= item.discount %> <%= item.last_price %></p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            <% }) %>
+        </div>
+    </div>
+</body>
+</html>

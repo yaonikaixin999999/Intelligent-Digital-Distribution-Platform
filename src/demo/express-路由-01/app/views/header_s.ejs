@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="/stylesheets/home_z/header.css">
+  <link rel="stylesheet" href="/stylesheets/home_z/search.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+  <style>
+    a {
+      text-decoration: none;
+      color: rgb(137, 187, 215);
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const tabs = document.querySelectorAll('.tab');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function (event) {
+          const targetRadioId = this.getAttribute('data-target');
+          const targetRadio = document.getElementById(targetRadioId);
+
+          document.getElementsByName('tabs').forEach(radio => radio.checked = false);
+          targetRadio.checked = true;
+        });
+      });
+    });
+  </script>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="tabs">
+      <input type="radio" id="radio-0" name="tabs" checked />
+      <a class="tab" data-target="radio-0" href="/all_game_s" target="content">全部游戏</a>
+      <input type="radio" id="radio-1" name="tabs" />
+      <a class="tab" data-target="radio-1" href="/user_manage_s" target="content">游戏账号管理</a>
+      <input type="radio" id="radio-2" name="tabs" />
+      <a class="tab" data-target="radio-2" href="/order_process_s" target="content">订单处理</a>
+      <input type="radio" id="radio-3" name="tabs" />
+      <a class="tab" data-target="radio-3" href="/count_volumn_s" target="content">统计销量</a>
+      <input type="radio" id="radio-4" name="tabs" />
+      <a class="tab" data-target="radio-4" href="/game_shelf_s" target="content">上架游戏</a>
+      <input type="radio" id="radio-5" name="tabs" />
+      <a class="tab" data-target="radio-5" href="/personal_data_s" target="content">关于自己</a>
+      <div class="flexbox">
+        <form action="/search_game" method="get"
+          onsubmit="event.preventDefault(); window.open(this.action + '?search=' + encodeURIComponent(this.search.value), '_blank');">
+          <div class="search">
+            <div>
+              <input type="text" name="search" placeholder="Search . . ." required>
+              <button type="submit"></button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <span class="glider"></span>
+    </div>
+  </div>
+</body>
+
+</html>

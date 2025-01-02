@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-    res.render("game_classify")
+    res.render("header_s")
   });
 
-module.exports = router;
+
+  module.exports = router;
