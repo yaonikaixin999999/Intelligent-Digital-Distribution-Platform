@@ -9,6 +9,36 @@ document.addEventListener('DOMContentLoaded', () => {
     //     fetchSearchResults(query);
     // });
 
+    // 将buyGame函数挂载到window对象
+    window.buyGame = function (gameId) {
+        const userId = '1001'; // 假设用户ID已知
+        fetch('/shopping_cart/buy', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ userId, gameId })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('购买成功！');
+                    location.reload();
+                } else {
+                    alert(data.message || '购买失败，请重试');
+                }
+            })
+            .catch(error => {
+                console.error('购买失败:', error);
+                alert('购买失败，请重试');
+            });
+    };
+
+    // 将showPurchaseAlert函数也挂载到window对象
+    window.showPurchaseAlert = function () {
+        alert('您已经拥有这个游戏了');
+    };
+
     // 添加按钮点击事件监听器
     searchButton.addEventListener('click', () => {
         const query = searchInput.value.trim();

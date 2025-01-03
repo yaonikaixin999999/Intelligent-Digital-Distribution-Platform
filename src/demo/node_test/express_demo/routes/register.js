@@ -15,6 +15,7 @@ router.post('/', function (req, res, next) {
       console.log(err);
       res.send('账号已存在或者输入的格式错误');
     } else {
+      alert('注册成功'); // 弹窗提示
       res.send('注册成功');
     }
   });

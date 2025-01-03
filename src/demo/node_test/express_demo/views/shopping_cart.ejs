@@ -44,7 +44,7 @@
                             </button>
                             <% } else { %>
                                 <button class="discount"
-                                    onclick="buyGame('<%= game.game_id %>'); event.stopPropagation()">
+                                    onclick="event.preventDefault(); event.stopPropagation(); window.buyGame('<%= game.game_id %>');">
                                     <% if (game.discount==='免费' ) { %>
                                         免费
                                         <% } else { %>
@@ -54,7 +54,7 @@
                                 <% } %>
                     </div>
                 </div>
-                <% }) %>
+                <% }); %>
                     <% } else { %>
                         <p>愿望单为空</p>
                         <% } %>
